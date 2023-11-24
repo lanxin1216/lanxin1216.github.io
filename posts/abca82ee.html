@@ -1,0 +1,1194 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Python学习笔记（二） | Alan &amp; Blog</title><meta name="author" content="Alan"><meta name="copyright" content="Alan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Python的学习笔记，数据容器的基础知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python学习笔记（二）">
+<meta property="og:url" content="http://alanblog.cn/posts/abca82ee.html">
+<meta property="og:site_name" content="Alan &amp; Blog">
+<meta property="og:description" content="Python的学习笔记，数据容器的基础知识">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://alan.s3.bitiful.net/img/img_C_14.webp">
+<meta property="article:published_time" content="2023-08-15T06:09:45.000Z">
+<meta property="article:modified_time" content="2023-09-04T12:15:50.000Z">
+<meta property="article:author" content="Alan">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://alan.s3.bitiful.net/img/img_C_14.webp"><link rel="shortcut icon" href="/img/trademark.png"><link rel="canonical" href="http://alanblog.cn/posts/abca82ee.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.staticfile.org/fancyapps-ui/5.0.19/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":200,"languages":{"author":"作者: Alan","link":"链接: ","source":"来源: Alan & Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#87CEFA","bgDark":"#87CEFA","position":"top-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.staticfile.org/flickr-justified-gallery/2.1.2/fjGallery.min.js',
+      css: 'https://cdn.staticfile.org/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Python学习笔记（二）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-04 20:15:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 22
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css?v=2.2" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/echarts@4.9.0/dist/echarts.min.js"></script><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="https://cdn1.tianli0.top/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/runtime.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/hexo-filter-gitcalendar/lib/gitcalendar.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 网站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/directory/site/charts/"><i class="fa-fw fas fa-chart-pie"></i><span> 文章统计</span></a></li><li><a class="site-page child" href="/directory/site/log/"><i class="fa-fw fas fa-timeline"></i><span> 更新日志</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-link"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/directory/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/directory/website/"><i class="fa-fw fas fa-link"></i><span> 网站链接</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/directory/learn/"><i class="fa-fw fas fa-graduation-cap"></i><span> 学习表</span></a></div><div class="menus_item"><a class="site-page" href="/directory/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://alan.s3.bitiful.net/img/img_C_14.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="Alan &amp; Blog"><span class="site-name">Alan &amp; Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 网站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/directory/site/charts/"><i class="fa-fw fas fa-chart-pie"></i><span> 文章统计</span></a></li><li><a class="site-page child" href="/directory/site/log/"><i class="fa-fw fas fa-timeline"></i><span> 更新日志</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-link"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/directory/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/directory/website/"><i class="fa-fw fas fa-link"></i><span> 网站链接</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/directory/learn/"><i class="fa-fw fas fa-graduation-cap"></i><span> 学习表</span></a></div><div class="menus_item"><a class="site-page" href="/directory/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Python学习笔记（二）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-08-15T06:09:45.000Z" title="发表于 2023-08-15 14:09:45">2023-08-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-09-04T12:15:50.000Z" title="更新于 2023-09-04 20:15:50">2023-09-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python/">Python</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">6.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>23分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Python学习笔记（二）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><span class='p center huge'>python学习笔记（二）</span>
+
+<blockquote>
+<p><strong>python学习教程了🍳👇👇</strong></p>
+<p>b站 - 黑马程序员</p>
+<p>👉<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1qW4y1a7fU/?spm_id_from=333.1007.top_right_bar_window_custom_collection.content.click&vd_source=6e4afa28de12d7ce5a6648aec8c6298d">黑马程序员python教程，8天python从入门到精通，学python看这套就够了_哔哩哔哩_bilibili</a></p>
+<p>👉<a target="_blank" rel="noopener" href="https://www.itheima.com/">黑马程序员官网-IT培训机构</a></p>
+<p><strong>python学习笔记导航🚲👇👇</strong></p>
+<p>👉<a target="_blank" rel="noopener" href="https://www.alanblog.cn/posts/9bdc6e36.html">python学习笔记（一）</a></p>
+<p>👉<a target="_blank" rel="noopener" href="https://www.alanblog.cn/posts/abca82ee.html">python学习笔记（二）</a>👈当前位置</p>
+<p>👉<a target="_blank" rel="noopener" href="https://www.alanblog.cn/posts/e6d421bc.html">python学习笔记（三）</a></p>
+<p>👉<a target="_blank" rel="noopener" href="https://www.alanblog.cn/posts/51f938d9.html">python学习笔记（四）</a></p>
+</blockquote>
+<hr>
+<h1 id="六、python数据容器"><a href="#六、python数据容器" class="headerlink" title="六、python数据容器"></a>六、python数据容器</h1><h2 id="1、数据容器的入门"><a href="#1、数据容器的入门" class="headerlink" title="1、数据容器的入门"></a>1、数据容器的入门</h2><p>数据容器是什么：</p>
+<p>理解，数据容器即<strong>数组</strong>！</p>
+<p>一种可以容纳多份数据的数据类型，容纳的每一份数据称之为1个元素每一个元素，可以是任意类型的数据，如字符串、数字、布尔等。</p>
+<p>数据容器根据特点的不同，如:</p>
+<ol>
+<li>是否支持重复元素</li>
+<li>是否可以修改</li>
+<li>是否有序，等</li>
+</ol>
+<blockquote>
+<p>分为5类，分别是:  <strong>列表 (list)、元组 (tuple) 、字符串 (str)、集合 (set) 、字典(dict)</strong></p>
+</blockquote>
+<h2 id="2、数据容器：list（列表）"><a href="#2、数据容器：list（列表）" class="headerlink" title="2、数据容器：list（列表）"></a>2、数据容器：list（列表）</h2><h3 id="（1）列表的定义"><a href="#（1）列表的定义" class="headerlink" title="（1）列表的定义"></a>（1）列表的定义</h3><p>基本语法：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 字面量</span></span><br><span class="line">[元素<span class="number">1</span>，元素<span class="number">2</span>，元素<span class="number">3</span>，元素<span class="number">4</span>，...]</span><br><span class="line"><span class="comment"># 定义变量</span></span><br><span class="line">变量名称 = [元素<span class="number">1</span>，元素<span class="number">2</span>，元素<span class="number">3</span>，元素	<span class="number">4</span>，...]</span><br><span class="line"><span class="comment"># 定义空列表</span></span><br><span class="line">变量名称 = []</span><br><span class="line">变量名称 <span class="built_in">list</span>()</span><br></pre></td></tr></table></figure>
+
+<p>注：</p>
+<ol>
+<li>列表内的每一个数据，称之为<strong>元素</strong></li>
+<li>以 [] 作为标识</li>
+<li>列表内每一个元素之间用，逗号隔开</li>
+</ol>
+<p>注意：列表可以一次存储多个数据，且可以为不同的数据类型，支持嵌套</p>
+<h3 id="（2）列表的下标索引"><a href="#（2）列表的下标索引" class="headerlink" title="（2）列表的下标索引"></a>（2）列表的下标索引</h3><p>列表中的每一个元素，都有其位置下标索引，从前向后的方向，从0开始，依次递增</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdnjson.com/images/2023/10/09/python_.png" alt="python_列表的下标"></p>
+<p>或者，可以反向索引，也就是从后向前：从-1开始，依次递减（-1、-2、-3……）</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdnjson.com/images/2023/10/09/python_-.png" alt="python_列表的下标-反向"></p>
+<p>嵌套列表的下标(索引)</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdnjson.com/images/2023/10/09/pyton_.png" alt="pyton_嵌套列表的下标(索引)"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 通过下标索引取出对应位置的数据</span></span><br><span class="line"></span><br><span class="line">my_	<span class="built_in">list</span> = [<span class="string">&quot;Tom&quot;</span>，<span class="string">&quot;Lixy&quot;</span>，<span class="string">&quot;Rose&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列表[ 下标索引]，从前向后从0开始，每次+1，从后向前从-1开始，每次-1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(my_list[o])</span><br><span class="line"><span class="built_in">print</span>(my_list[<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(my_list[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 错误示范，通过下标索引取数据，一定不要超出范围</span></span><br><span class="line"><span class="comment"># print(my_list[3])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过下标索引取出数据(倒序取出)</span></span><br><span class="line"><span class="built_in">print</span>(my_list[-<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(my_list[-<span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(my_list[-<span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">   <span class="comment"># 取出嵌套列表的元素</span></span><br><span class="line">   my_list = [ [<span class="number">1</span>，<span class="number">2</span>，<span class="number">3</span>]，[<span class="number">4</span>，<span class="number">5</span>，<span class="number">6</span>]]</span><br><span class="line"><span class="comment"># 取出数字5</span></span><br><span class="line"><span class="built_in">print</span>(my_ist[<span class="number">1</span>][<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<h3 id="（3）列表的常用操作"><a href="#（3）列表的常用操作" class="headerlink" title="（3）列表的常用操作"></a>（3）列表的常用操作</h3><p>列表也提供了一系列功能：</p>
+<ul>
+<li><p>插入元素</p>
+</li>
+<li><p>删除元素</p>
+</li>
+<li><p>清空列表</p>
+</li>
+<li><p>修改元素</p>
+</li>
+</ul>
+<p>统计元素个数等等功能，这些功能我们都称之为：<strong>列表的方法</strong></p>
+<p><strong>列表的查询功能(方法)</strong></p>
+<p><strong>函数</strong>是一个封装的代码单元，可以提供特定功能。</p>
+<p>在Python中，如果将函数定义为class (类)的成员，那么函数会称之为：<strong>方法</strong></p>
+<p>定义的区别：</p>
+<p>函数定义：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">x, y</span>)</span><br><span class="line">   	<span class="keyword">return</span> x + y</span><br></pre></td></tr></table></figure>
+
+<p>方法的定义：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span>:</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">self, x , y</span>)</span><br><span class="line">    	<span class="keyword">return</span> x + y</span><br></pre></td></tr></table></figure>
+
+<p>方法和函数功能一样，有传入参数，有返回值，只是方法的使用格式不同：</p>
+<p>函数的使用：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">num = add(<span class="number">1</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>方法的使用：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">student = Student()</span><br><span class="line">num = student.add(<span class="number">1</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="①-列表的查询功能-方法"><a href="#①-列表的查询功能-方法" class="headerlink" title="① 列表的查询功能(方法)"></a>① 列表的查询功能(方法)</h4><p>​	查找某元素的下标</p>
+<blockquote>
+<p>功能：查找指定元素在列表的下标，如果找不到，报错ValueError</p>
+<p>语法: </p>
+<blockquote>
+<p><strong>列表.index(元素)</strong></p>
+</blockquote>
+</blockquote>
+<p>index就是列表对象(变量)内置的方法(函数)</p>
+<h4 id="②-列表的修改功能-方法"><a href="#②-列表的修改功能-方法" class="headerlink" title="② 列表的修改功能(方法)"></a>② 列表的修改功能(方法)</h4><p>修改特定位置(索引)的元素值：</p>
+<blockquote>
+<p>语法：</p>
+<blockquote>
+<p><strong>列表[下标] &#x3D; 值</strong></p>
+</blockquote>
+</blockquote>
+<p>可以使用如上语法，直接对指定下标(正向、反向下标均可)的值进行：重新赋值(修改)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"> <span class="comment">#正向下标</span></span><br><span class="line">my_list = [<span class="number">1</span>，<span class="number">2</span>，<span class="number">3</span>]</span><br><span class="line">my_list[<span class="number">0</span>] = <span class="number">5</span></span><br><span class="line"><span class="built_in">print</span>(my_list) <span class="comment"># 结果: [5，2，3]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 反向下标</span></span><br><span class="line">my_list = [<span class="number">1</span>，<span class="number">2</span>，<span class="number">3</span>]</span><br><span class="line">my_list[-<span class="number">3</span>] = <span class="number">5</span></span><br><span class="line"><span class="built_in">print</span>(my_list) <span class="comment"># 结果: [5，2，3]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="③-列表的修改功能-方法"><a href="#③-列表的修改功能-方法" class="headerlink" title="③ 列表的修改功能(方法)"></a>③ 列表的修改功能(方法)</h4><h5 id="a-插入元素"><a href="#a-插入元素" class="headerlink" title="a.插入元素:"></a>a.插入元素:</h5><blockquote>
+<p>功能: 在指定的下标位置，插入指定的元素</p>
+<p>语法: </p>
+<blockquote>
+<p><strong>列表.insert(下标, 元素)</strong></p>
+</blockquote>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">my_list.insert(<span class="number">1</span>, <span class="string">&quot;itheima&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(my_list)  <span class="comment"># 结果: [1, &quot;itheima&quot;, 3, 4]</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="b-追加元素-01："><a href="#b-追加元素-01：" class="headerlink" title="b.追加元素-01："></a>b.追加元素-01：</h5><blockquote>
+<p>功能: 将指定元素，追加到列表的尾部</p>
+<p>语法：</p>
+<blockquote>
+<p><strong>列表.append(元素)</strong></p>
+</blockquote>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">my_list.append(<span class="number">4</span>)</span><br><span class="line"><span class="built_in">print</span>(my_list)  <span class="comment"># 结果: [1，2，3，4]</span></span><br><span class="line"></span><br><span class="line">my_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">my_1ist.append([<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</span><br><span class="line"><span class="built_in">print</span>(my_list)   <span class="comment"># 结果: [ 1, 2, 3, [4, 5, 6]]</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="b-追加元素-02："><a href="#b-追加元素-02：" class="headerlink" title="b.追加元素-02："></a>b.追加元素-02：</h5><blockquote>
+<p>功能: 将其它数据容器的内容取出，依次追加到列表尾部</p>
+<p>语法: </p>
+<blockquote>
+<p><strong>列表.extend(其它数据容器)</strong></p>
+</blockquote>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">my_list.extend([<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</span><br><span class="line"><span class="built_in">print</span>(my_list)    <span class="comment"># 结果: [1, 2, 3, 4, 5, 6]</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="c-删除元素"><a href="#c-删除元素" class="headerlink" title="c.删除元素"></a>c.删除元素</h5><blockquote>
+<p>语法1： <strong>del 列表[下标]</strong></p>
+<p>语法2：<strong>列表.pop(下标)</strong></p>
+</blockquote>
+<p>区别：</p>
+<p>​		pop方法的本质是将元素取出来，然后返回出去，所以通过pop方法可以接收这个返回值，即可以接收删除的这个元素。</p>
+<h5 id="d-删除某元素在列表中的第一个匹配项"><a href="#d-删除某元素在列表中的第一个匹配项" class="headerlink" title="d.删除某元素在列表中的第一个匹配项"></a>d.删除某元素在列表中的第一个匹配项</h5><blockquote>
+<p>语法：</p>
+<blockquote>
+<p><strong>列表.remove(元素)</strong></p>
+</blockquote>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">my_list.remove(<span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(my_list)   <span class="comment"># 结果: [1，3，2，3]</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="e-清空列表内容"><a href="#e-清空列表内容" class="headerlink" title="e.清空列表内容"></a>e.清空列表内容</h5><blockquote>
+<p>语法：</p>
+<blockquote>
+<p><strong>列表.clear()</strong></p>
+</blockquote>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">my_list.clear()</span><br><span class="line"><span class="built_in">print</span>(my_list)  <span class="comment"># 结果: []</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="④-统计元素"><a href="#④-统计元素" class="headerlink" title="④ 统计元素"></a>④ 统计元素</h4><h5 id="a-统计某元素在列表内的数量"><a href="#a-统计某元素在列表内的数量" class="headerlink" title="a.统计某元素在列表内的数量"></a>a.统计某元素在列表内的数量</h5><blockquote>
+<p>语法：</p>
+<blockquote>
+<p><strong>列表.count(元素)</strong></p>
+</blockquote>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_list = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="built_in">print</span>(my_list.count(<span class="number">1</span>))  <span class="comment"># 结果 ： 3</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="b-统计列表内，有多少元素"><a href="#b-统计列表内，有多少元素" class="headerlink" title="b.统计列表内，有多少元素"></a>b.统计列表内，有多少元素</h5><blockquote>
+<p>语法：</p>
+<blockquote>
+<p><strong>len(列表)</strong><br>通过len()函数，可以得到一个int数字，表示列表内的元素数量。</p>
+</blockquote>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(my_list))   <span class="comment"># 结果5</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="⑤-总结"><a href="#⑤-总结" class="headerlink" title="⑤ 总结"></a>⑤ 总结</h4><table>
+<thead>
+<tr>
+<th align="center">编号</th>
+<th align="center">使用方式</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">列表.append(元素)</td>
+<td align="center">向列表中追加一个元素</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">列表.extend(容器)</td>
+<td align="center">将数据容器的内容依次取出，追加到列表尾部</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">列表.insert(下标,元素)</td>
+<td align="center">在指定下标处，插入指定的元素</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">del列表[下标]</td>
+<td align="center">删除列表指定下标元素</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">列表.pop(下标)</td>
+<td align="center">删除列表指定下标元素</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">列表.remove(元素)</td>
+<td align="center">从前向后，删除此元素第一个匹配项</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">列表.clear()</td>
+<td align="center">清空列表</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">列表.count(元素)</td>
+<td align="center">统计此元素在列表中出现的次数</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">列表.index(元素)</td>
+<td align="center">查找指定元素在列表的下标,找不到报错ValueError</td>
+</tr>
+<tr>
+<td align="center">10</td>
+<td align="center">len(列表)</td>
+<td align="center">统计容器内有多少元素</td>
+</tr>
+</tbody></table>
+<p><strong>列表的特点：</strong></p>
+<p>可以总结出列表有如下特点：</p>
+<ol>
+<li>可以容纳多个元素(上限为2**63-1、9223372036854775807个</li>
+<li>可以容纳不同类型的元素(混装)</li>
+<li>数据是有序存储的(有下标序号)</li>
+<li>允许重复数据存在</li>
+<li>可以修改(增加或删除元素等)</li>
+</ol>
+<h3 id="（4）list（列表）的遍历"><a href="#（4）list（列表）的遍历" class="headerlink" title="（4）list（列表）的遍历"></a>（4）list（列表）的遍历</h3><p>既然数据容器可以存储多个元素，那么，就会有需求从容器内依次取出元素进行操作。</p>
+<p>将容器内的元素依次取出进行处理的行为，称之为：遍历、迭代。</p>
+<h4 id="①-while循环"><a href="#①-while循环" class="headerlink" title="① while循环"></a>① while循环</h4><p>语法：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">index = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> index &lt; <span class="built_in">len</span>(列表):</span><br><span class="line">    元素 = 列表[index]</span><br><span class="line">    对元素进行处理</span><br><span class="line">    index += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="②-for循环"><a href="#②-for循环" class="headerlink" title="② for循环"></a>② for循环</h4><p>语法：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> 临时变量 <span class="keyword">in</span> 数据容器:</span><br><span class="line">    对临时变量进行处理</span><br></pre></td></tr></table></figure>
+
+<h4 id="③-whlie和for循环的对比"><a href="#③-whlie和for循环的对比" class="headerlink" title="③ whlie和for循环的对比"></a>③ whlie和for循环的对比</h4><p>while循环和for循环，都是循环语句，但细节不同：</p>
+<ul>
+<li>在循环控制上:<ul>
+<li>while循环<strong>可以自定循环条件</strong>，并自行控制</li>
+<li>for循环<strong>不可以自定循环条件</strong>，只可以一个个从容器内取出数据</li>
+</ul>
+</li>
+<li>在无限循环上:<ul>
+<li>while循环<strong>可以</strong>通过条件控制做到无限循环</li>
+<li>for循环理论上<strong>不可以</strong>，因为被遍历的容器容量不是无限的</li>
+</ul>
+</li>
+<li>在使用场景上:<ul>
+<li>while循环适用于任何想要循环的场景</li>
+<li>for循环适用于，遍历数据容器的场景或简单的固定次数循环场景</li>
+</ul>
+</li>
+</ul>
+<h2 id="3、数据容器-tuple（元组）"><a href="#3、数据容器-tuple（元组）" class="headerlink" title="3、数据容器: tuple（元组）"></a>3、数据容器: tuple（元组）</h2><h3 id="（1）为什么需要元组？"><a href="#（1）为什么需要元组？" class="headerlink" title="（1）为什么需要元组？"></a>（1）为什么需要元组？</h3><p>列表是可以修改的。如果想要传递的信息，不被篡改，列表就不合适了。</p>
+<p>元组同列表一样，都是可以封装多个、不同类型的元素在内。但最大的不同点在于：</p>
+<p><strong>元组一旦定义完成,就不可修改</strong></p>
+<p>所以，当需要在程序内封装数据，又不希望封装的数据被篡改，那么元组就非常合适</p>
+<h3 id="（2）元组的定义"><a href="#（2）元组的定义" class="headerlink" title="（2）元组的定义"></a>（2）元组的定义</h3><p>定义元组使用<strong>小括号</strong>，且使用逗号隔开各个数据，数据可以是不同的数据类型。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定义元组字面量</span></span><br><span class="line">(元素, 元素, ......, 元素)</span><br><span class="line"><span class="comment"># 定义元组变量</span></span><br><span class="line">变量名称 = (元素, 元素, ......, 元素)</span><br><span class="line"><span class="comment"># 定义空元组</span></span><br><span class="line">变量名称 = ()    <span class="comment"># 方式1</span></span><br><span class="line">变量名称 = tupe()    <span class="comment"># 方式2</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：元组只有一个数据，这个数据后面要添加一个逗号，否则就不是元组类型。</p>
+<p>元组也支持嵌套：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定义一个嵌套元组</span></span><br><span class="line">t1 = ((<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>), (<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>))</span><br><span class="line"><span class="built_in">print</span>(t1[<span class="number">0</span>][<span class="number">0</span>])   <span class="comment"># 结果：1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="（3）元组的操作"><a href="#（3）元组的操作" class="headerlink" title="（3）元组的操作"></a>（3）元组的操作</h3><p>方法：<strong>index()</strong></p>
+<p>作用：查找某个数据，如果数据存在返回对应的下标，否则报错。</p>
+<p>方法：<strong>count()</strong></p>
+<p>作用：统计某个数据在当前元组出现的次数。</p>
+<p>方法：<strong>len(元组)</strong></p>
+<p>作用：统计元组内的元素个数。</p>
+<h3 id="（4）元组的遍历"><a href="#（4）元组的遍历" class="headerlink" title="（4）元组的遍历"></a>（4）元组的遍历</h3><p>元组的（while和for）遍历和列表的遍历方法一致。</p>
+<h3 id="（5）元组的特点"><a href="#（5）元组的特点" class="headerlink" title="（5）元组的特点"></a>（5）元组的特点</h3><p>有如下特点：</p>
+<ul>
+<li><p>可以容纳多个数据</p>
+</li>
+<li><p>可以容纳不同类型的数据 (混装 )</p>
+</li>
+<li><p>数据是有序存储的 (下标索引 )</p>
+</li>
+<li><p>允许重复数据存在</p>
+</li>
+<li><p><strong>不可以修改</strong> (增加或删除元素等 )</p>
+</li>
+<li><p>支持for循环</p>
+<p>多数特性和list一致，不同点在于不可修改的特性</p>
+</li>
+</ul>
+<p>注：</p>
+<ul>
+<li>不可以修改元组的内容，否则会直接报错。</li>
+<li><strong>可以修改元组内list的内容</strong>（修改元素，增加，删除，反转等）</li>
+</ul>
+<h2 id="4、数据容器：str（字符串）"><a href="#4、数据容器：str（字符串）" class="headerlink" title="4、数据容器：str（字符串）"></a>4、数据容器：str（字符串）</h2><p>字符串同样也是数据容器的一员。</p>
+<p>字符串是字符的容器，一个字符串可以存放任意数量的字符。</p>
+<h3 id="（1）字符串的下标（索引）"><a href="#（1）字符串的下标（索引）" class="headerlink" title="（1）字符串的下标（索引）"></a>（1）字符串的下标（索引）</h3><p>和其他容器，列表、元组一样，字符串也可以通过下标进行访问。</p>
+<ul>
+<li>从前向后，下标从0开始</li>
+<li>从后向前，下标从-1开始</li>
+</ul>
+<p>注：同元组一样，字符串是一个：无法修改的数据容器。</p>
+<p>所以:</p>
+<ul>
+<li><p>修改指定下标的字符    (如:字符串[0]&#x3D;“a”)</p>
+</li>
+<li><p>移除特定下标的字符    (如: del 字符串[0]、字符串.remove()、字符串.pop()等)</p>
+</li>
+<li><p>追加字符等    (如:字符串append())</p>
+<p>均无法完成。如果必须要做，只能得到一个新的字符串，旧的字符串是无法修改</p>
+</li>
+</ul>
+<h3 id="（2）字符串的操作"><a href="#（2）字符串的操作" class="headerlink" title="（2）字符串的操作"></a>（2）字符串的操作</h3><ul>
+<li><p>查找特定字符串的下标索引值</p>
+<ul>
+<li>语法： <strong>字符串.index(字符串)</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_str =<span class="string">&quot;itcast and itheima&quot;</span></span><br><span class="line"><span class="built_in">print</span>(my_str.index(<span class="string">&quot;and&quot;</span>))   <span class="comment"># 结果7</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>字符串的替换</p>
+<ul>
+<li><p>语法：<strong>字符串.replace(字符串1，字符串2)</strong></p>
+</li>
+<li><p>功能： 将字符串内的全部: 字符串1，替换为字符串2</p>
+</li>
+</ul>
+<p>注意：<strong>不是修改字符串本身，而是得到了一个新字符串</strong>,本质上来说会得到一个返回值。</p>
+</li>
+<li><p>字符串的分割</p>
+<ul>
+<li>语法：<strong>字符串.split(分隔符字符串 )</strong></li>
+<li>功能：按照指定的分隔符字符串，将字符串划分为多个字符串，并存入列表对象</li>
+</ul>
+<p>注意：<strong>字符串本身不变，而是得到了一个列表（list）对象</strong></p>
+</li>
+<li><p>字符串的规整操作(去前后空格)</p>
+<ul>
+<li>语法：<strong>字符串.strip()</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_str = <span class="string">&quot; itheima and itcast&quot;</span></span><br><span class="line"><span class="built_in">print</span> (my_str .strip())</span><br><span class="line"><span class="comment"># 结果:&quot;itheima and itcast&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>​		注意：不传入参数就是默认去除前后的空格。</p>
+<ul>
+<li><p>字符串的规整操作(去前后指定字符串)</p>
+<ul>
+<li>语法: <strong>字符串.strip(字符串)</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_str = <span class="string">&quot;12itheima and itcast21&quot;</span></span><br><span class="line"><span class="built_in">print</span>(my_str .strip(<span class="string">&quot;12&quot;</span>))</span><br><span class="line"><span class="comment"># 结果:&quot;itheima and itcast&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：传入的是“12” 其实就是:”1”和”2”都会移除，是按照单个字符。</p>
+</li>
+<li><p>统计字符串中某字符中的出现次数</p>
+<ul>
+<li>语法：<strong>字符串.count()</strong></li>
+</ul>
+</li>
+<li><p>统计字符串的长度</p>
+<ul>
+<li>语法：<strong>len(字符串)</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="（3）字符串常用操作汇总"><a href="#（3）字符串常用操作汇总" class="headerlink" title="（3）字符串常用操作汇总"></a>（3）字符串常用操作汇总</h3><table>
+<thead>
+<tr>
+<th align="center">编号</th>
+<th align="center">操作</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">字符串[下标]</td>
+<td align="center">根据下标索引取出特定位置字符</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">字符串.index(字符串)</td>
+<td align="center">查找给定字符的第一个匹配项的下标</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">字符串.replace(字符串1,字符串2)</td>
+<td align="center">将字符串内的全部字符串1，替换为字符串2,不会修改原字符串，而是得到一个新的</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">字符串.split(字符串)</td>
+<td align="center">按照给定字符串，对字符串进行分隔不会修改原字符串，而是得到一个新的列表</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">字符串.strip()<br/>字符串.strip(字符串)</td>
+<td align="center">移除首尾的空格和换行符或指定字符串</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">字符串.count(字符串)</td>
+<td align="center">统计字符串内某字符串的出现次数</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">len(字符串)</td>
+<td align="center">统计字符串的字符个数</td>
+</tr>
+</tbody></table>
+<h3 id="（4）字符串的遍历"><a href="#（4）字符串的遍历" class="headerlink" title="（4）字符串的遍历"></a>（4）字符串的遍历</h3><p>同列表、元组一样，字符串也支持while循环和for循环进行追历</p>
+<h3 id="（5）字符串的特点"><a href="#（5）字符串的特点" class="headerlink" title="（5）字符串的特点"></a>（5）字符串的特点</h3><p>作为数据容器，字符串有如下特点：</p>
+<ul>
+<li><strong>只可以存储字符串</strong></li>
+<li>长度任意 (取决于内存大小)</li>
+<li>支持下标索引</li>
+<li>允许重复字符串存在</li>
+<li><strong>不可以修改</strong>(增加或删除元素等)</li>
+<li>支持while和for循环</li>
+</ul>
+<h2 id="5、数据容器的切片"><a href="#5、数据容器的切片" class="headerlink" title="5、数据容器的切片"></a>5、数据容器的切片</h2><h3 id="（1）序列"><a href="#（1）序列" class="headerlink" title="（1）序列"></a>（1）序列</h3><p>序列是指：内容连续、有序，可使用下标索引的一类数据容器</p>
+<p>列表、元组、字符串，均可以视为序列。</p>
+<h3 id="（2）序列的常用操作-切片"><a href="#（2）序列的常用操作-切片" class="headerlink" title="（2）序列的常用操作 - 切片"></a>（2）序列的常用操作 - 切片</h3><p>序列支持切片，即: 列表、元组、字符串，均支持进行切片操作</p>
+<p><strong>切片： 从一个序列中，取出一个子序列</strong></p>
+<p><strong>语法：序列[起始下标:结束下标:步长]</strong></p>
+<p>表示从序列中，从指定位置开始，依次取出元素，到指定位置结束，得到一个新序列：</p>
+<ul>
+<li><p>起始下标表示从何处开始，可以留空，留空视作从头开始</p>
+</li>
+<li><p>结束下标<strong>（不含）</strong>表示何处结束，可以留空，留空视作截取到结尾</p>
+</li>
+<li><p>步长表示，依次取元素的间隔</p>
+<ul>
+<li>步长1表示，一个个取元素</li>
+<li>步长2表示，每次跳过1个元素取</li>
+<li>步长N表示，每次跳过N-1个元素取</li>
+<li>步长为负数表示，反向取（注意，起始下标和结束下标也要反向标记）</li>
+</ul>
+</li>
+</ul>
+<p>注意：此操作不会影响序列本身，而是会得到一个新的序列（列表，元组、字符串）。</p>
+<p>测试：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">对序列进行切片操作</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对list进行切片，从1开始，4结束，步长1</span></span><br><span class="line">my_list = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">result1 = my_list[<span class="number">1</span>:<span class="number">4</span>]      <span class="comment"># 步长默认是1，所以可以省略不写</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;结果1：<span class="subst">&#123;result1&#125;</span>&quot;</span>)   <span class="comment"># 结果1：[1, 2, 3]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对tuple进行切片，从头开始，到最后结束，步长1</span></span><br><span class="line">my_tuple = (<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, )</span><br><span class="line">result2 = my_tuple[:]       <span class="comment"># 起始和结束不写表示从头到尾，步长为1可以省略</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;结果2：<span class="subst">&#123;result2&#125;</span>&quot;</span>)   <span class="comment"># 结果2：(0, 1, 2, 3, 4, 5, 6)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对str进行切片，从头开始，到最后结束，步长2</span></span><br><span class="line">my_str = <span class="string">&quot;01234567&quot;</span></span><br><span class="line">result3 = my_str[::<span class="number">2</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;结果3：<span class="subst">&#123;result3&#125;</span>&quot;</span>)   <span class="comment"># 结果3：0246</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对str进行切片，从头开始，到最后结束，步长-1</span></span><br><span class="line">my_str = <span class="string">&quot;01234567&quot;</span></span><br><span class="line">result4 = my_str[::-<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;结果4：<span class="subst">&#123;result4&#125;</span>&quot;</span>)   <span class="comment"># 等同于将序列反转了  结果4：76543210</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对列表进行切片，从3开始，到1结束，步长-1</span></span><br><span class="line">my_list = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">result5 = my_list[<span class="number">3</span>:<span class="number">1</span>:-<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;结果5：<span class="subst">&#123;result5&#125;</span>&quot;</span>)   <span class="comment"># 结果5：[3, 2]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对元组进行切片，从头开始，到尾结束，步长-2</span></span><br><span class="line">my_tuple = (<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, )</span><br><span class="line">result6 = my_tuple[::-<span class="number">2</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;结果6：<span class="subst">&#123;result6&#125;</span>&quot;</span>)    <span class="comment"># 结果6：(6, 4, 2, 0)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6、数据容器-：set（集合）"><a href="#6、数据容器-：set（集合）" class="headerlink" title="6、数据容器:：set（集合）"></a>6、数据容器:：set（集合）</h2><h3 id="（1）为什么使用集合"><a href="#（1）为什么使用集合" class="headerlink" title="（1）为什么使用集合"></a>（1）为什么使用集合</h3><p> 通过特性来分析:</p>
+<ul>
+<li>列表可修改、支持重复元素且有序</li>
+<li>元组、字符串不可修改、支持重复元素且有序</li>
+</ul>
+<p>局限就在于：<strong>它们都支持重复元素</strong>。</p>
+<p>如果场景需要对内容做去重处理，列表、元组、字符串就不方便了。</p>
+<p>而集合，最主要的特点就是：<strong>不支持元素的重复(自带去重功能)、并且内容无序。</strong></p>
+<h3 id="（2）集合的定义："><a href="#（2）集合的定义：" class="headerlink" title="（2）集合的定义："></a>（2）集合的定义：</h3><p>语法：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定义集合字面量</span></span><br><span class="line">&#123;元素, 元素, ......,元素&#125;</span><br><span class="line"><span class="comment"># 定义集合变量</span></span><br><span class="line">变量名称 = &#123;元素, 元素, ......, 元素&#125;</span><br><span class="line"><span class="comment"># 定义空集合</span></span><br><span class="line">变量名称 = <span class="built_in">set</span>()</span><br></pre></td></tr></table></figure>
+
+<p>和列表、元组、字符串等定义基本相同：</p>
+<ul>
+<li>列表使用：[ ]</li>
+<li>元组使用：( )</li>
+<li>字符串使用：” “</li>
+<li>集合的使用：{}</li>
+</ul>
+<h3 id="（3）集合（set）的两个基本特点"><a href="#（3）集合（set）的两个基本特点" class="headerlink" title="（3）集合（set）的两个基本特点"></a>（3）集合（set）的两个基本特点</h3><ol>
+<li>不允许重复；</li>
+<li>内容无序。</li>
+</ol>
+<p>注意：因为集合是无序的，所以<strong>集合不是序列</strong>！！</p>
+<h3 id="（4）集合的常用操作-修改"><a href="#（4）集合的常用操作-修改" class="headerlink" title="（4）集合的常用操作 - 修改"></a>（4）集合的常用操作 - 修改</h3><p>因为集合是无序的，所以<strong>集合不支持：下标索引访问。</strong></p>
+<p>但是集合和列表一样，是允许修改的。</p>
+<ul>
+<li><p>添加新元素</p>
+<ul>
+<li><p>语法：<strong>集合.add(元素)</strong></p>
+</li>
+<li><p>功能：将指定元素，添加到集合内</p>
+</li>
+<li><p>结果：集合本身被修改，添加了新元素</p>
+</li>
+</ul>
+</li>
+<li><p>移除元素</p>
+<ul>
+<li><p>语法：<strong>集合.remove(元素)</strong></p>
+</li>
+<li><p>功能：将指定元素，从集合内移除</p>
+</li>
+<li><p>结果：集合本身被修改，移除了元素</p>
+</li>
+</ul>
+</li>
+<li><p>从集合中随机取出元素</p>
+<ul>
+<li><p>语法：<strong>集合.pop()</strong></p>
+</li>
+<li><p>功能：从集合中随机取出一个元素</p>
+</li>
+<li><p>结果：会得到一个元素的结果。同时集合本身被修改，元素被移除</p>
+</li>
+<li><p>注意：pop()在列表中也有。但是不同的是列表可以指定元素下标索引，但是由于集合没有下标索引，所以取出的元素为随机。</p>
+</li>
+</ul>
+</li>
+<li><p>清空集合</p>
+<ul>
+<li><p>语法：<strong>集合.clear()</strong></p>
+</li>
+<li><p>功能：清空集合中的所有元素。</p>
+</li>
+<li><p>结果：集合中的元素被清空，得到一个空集合set().</p>
+</li>
+</ul>
+</li>
+<li><p>取出2个集合的差集</p>
+<ul>
+<li><p>语法：<strong>集合1.difference(集合2)</strong></p>
+</li>
+<li><p>功能：取出集合1和集合2的差集 (集合1有而集合2没有的)</p>
+</li>
+<li><p>结果：得到一个新集合，集合1和集合2不变</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">set1 = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">set2 = &#123;<span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>&#125;</span><br><span class="line">set3 = set1.difference(set2)</span><br><span class="line"><span class="built_in">print</span>(set3)   <span class="comment"># 结果: &#123;2, 3&#125;得到的新集合</span></span><br><span class="line"><span class="built_in">print</span>(set1)   <span class="comment"># 结果: &#123;1, 2, 3&#125; 不变</span></span><br><span class="line"><span class="built_in">print</span>(set2)   <span class="comment"># 结果: &#123;1, 5, 6&#125; 不变</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>消除2个集合的差集</p>
+<ul>
+<li><p>语法：<strong>集合1.difference_update(集合2)</strong></p>
+</li>
+<li><p>功能：对比集合1和集合2，<strong>在集合1内，删除和集合2相同的元素</strong>。</p>
+</li>
+<li><p>结果：<strong>集合1被修改，集合2不变</strong></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">set1 = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">set2 = &#123;<span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>&#125;</span><br><span class="line">set1.difference_update(set2)</span><br><span class="line"><span class="built_in">print</span>(set1)   <span class="comment"># 结果: &#123;2, 3&#125;</span></span><br><span class="line"><span class="built_in">print</span>(set2)   <span class="comment"># 结果: &#123;1, 5, 6&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2个集合合并</p>
+<ul>
+<li><p>语法：<strong>集合1.union(集合2)</strong></p>
+</li>
+<li><p>功能：<strong>将集合1和集合2组合成新集合</strong></p>
+</li>
+<li><p>结果：<strong>得到新集合，集合1和集合2不变</strong></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">set1 = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">set2 = &#123;<span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>&#125;</span><br><span class="line">set3 = setl.union(set2)</span><br><span class="line"><span class="built_in">print</span>(set3)   <span class="comment"># 结果:&#123;1, 2, 3, 5, 6&#125;,新集合</span></span><br><span class="line"><span class="built_in">print</span>(set1)  <span class="comment"># 结果:&#123;1, 2, 3&#125;,set1不变</span></span><br><span class="line"><span class="built_in">print</span>(set2)  <span class="comment"># 结果:&#123;1, 5, 6&#125;,set2不变</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>统计集合元素的数量</p>
+<ul>
+<li><p>语法：<strong>len(集合)</strong></p>
+</li>
+<li><p>功能：统计集合元素的数量</p>
+</li>
+</ul>
+</li>
+<li><p>集合的遍历</p>
+<ul>
+<li><p>注意：集合不支持下标索引，所以不能用while循环。</p>
+</li>
+<li><p>可以<strong>使用for循环</strong>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="（5）集合的常用功能总结"><a href="#（5）集合的常用功能总结" class="headerlink" title="（5）集合的常用功能总结"></a>（5）集合的常用功能总结</h3><table>
+<thead>
+<tr>
+<th align="center">编号</th>
+<th align="center">操作</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">集合.add(元素)</td>
+<td align="center">集合内添加一个元素</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">集合.remove(元素)</td>
+<td align="center">移除集合内指定的元素</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">集合.pop()</td>
+<td align="center">从集合中随机取出一个元素</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">集合.clear()</td>
+<td align="center">将集合清空</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">集合1.difference(集合2)</td>
+<td align="center">得到一个新集合，内含2个集合的差集原有的2个集合内容不变</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">集合1.difference_update(集合2)</td>
+<td align="center">在集合1中，删除集合2中存在的元素集合1被修改，集合2不变</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">集合1.union(集合2)</td>
+<td align="center">得到1个新集合，内含2个集合的全部元素原有的2个集合内容不变</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">len(集合)</td>
+<td align="center">得到一个整数，记录了集合的元素数量</td>
+</tr>
+</tbody></table>
+<h3 id="（6）集合的特点"><a href="#（6）集合的特点" class="headerlink" title="（6）集合的特点"></a>（6）集合的特点</h3><ul>
+<li>可以容纳多个数据</li>
+<li>可以容纳不同类型的数据 (混装 )</li>
+<li><em>数据是无序存储的 (不支持下标索引)</em>*</li>
+<li><strong>不允许重复数据存在</strong></li>
+<li>可以修改(增加或删除元素等)</li>
+<li>支持for循环</li>
+</ul>
+<h2 id="7、数据容器：dict（字典、映射）"><a href="#7、数据容器：dict（字典、映射）" class="headerlink" title="7、数据容器：dict（字典、映射）"></a>7、数据容器：dict（字典、映射）</h2><p>生活中的字典：【字】：【含义】</p>
+<p>——可以按照【字】找到对应的【含义】</p>
+<p>Python中的字典：key：Value</p>
+<p>——可以按照【key】找到对应的【Value】</p>
+<h3 id="（1）为什么使用字典"><a href="#（1）为什么使用字典" class="headerlink" title="（1）为什么使用字典"></a>（1）为什么使用字典</h3><p>因为可以使用字典（dict），实现用key取出Value的操作。</p>
+<h3 id="（2）字典的定义"><a href="#（2）字典的定义" class="headerlink" title="（2）字典的定义"></a>（2）字典的定义</h3><p>字典的定义，同样<strong>使用{}<strong>，不过存储的元素是一个个的：</strong>键值对</strong>，如下语法:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定义字典字面量</span></span><br><span class="line">&#123;key: value, key: value, ......, key: value&#125;</span><br><span class="line"><span class="comment"># 定义字典变量</span></span><br><span class="line">my_dict = &#123;key: value, key: value, ......, key: value&#125;</span><br><span class="line"><span class="comment"># 定义空字典</span></span><br><span class="line">my_dict = &#123;&#125;     <span class="comment"># 空字典定义方式1</span></span><br><span class="line">my_dict = <span class="built_in">dict</span>()   <span class="comment"># 空字典定义方式2</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：定义空字典可以只定义：{} ，也可以定义：dict() ；而集合不能只使用 {} ，因为被字典占用了，必须定义为：set() 。</p>
+</blockquote>
+<h3 id="（3）字典数据的获取"><a href="#（3）字典数据的获取" class="headerlink" title="（3）字典数据的获取"></a>（3）字典数据的获取</h3><p>字典同集合一样，不可以使用下标索引。</p>
+<blockquote>
+<p>但是<strong>字典可以通过Key值来取得对应的Value</strong>。</p>
+<p>使用方法和下标索引的使用一样，使用一个:[]，将Key填入[]中就可以。</p>
+</blockquote>
+<h3 id="（4）字典的嵌套"><a href="#（4）字典的嵌套" class="headerlink" title="（4）字典的嵌套"></a>（4）字典的嵌套</h3><p>字典的Key和Value可以是任意数据类型（Key不可为字典）</p>
+<p>例如：</p>
+<table>
+<thead>
+<tr>
+<th align="center">姓名</th>
+<th align="center">语文</th>
+<th align="center">数学</th>
+<th align="center">英语</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">张三</td>
+<td align="center">77</td>
+<td align="center">66</td>
+<td align="center">55</td>
+</tr>
+<tr>
+<td align="center">李四</td>
+<td align="center">88</td>
+<td align="center">77</td>
+<td align="center">66</td>
+</tr>
+<tr>
+<td align="center">小明</td>
+<td align="center">99</td>
+<td align="center">88</td>
+<td align="center">66</td>
+</tr>
+</tbody></table>
+<p>对以上表格中的内容使用字典定义，如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定义嵌套字典</span></span><br><span class="line">my_dict = &#123;</span><br><span class="line">    <span class="string">&quot;张三&quot;</span>:&#123;</span><br><span class="line">        <span class="string">&quot;语文&quot;</span>:<span class="number">77</span>,</span><br><span class="line">        <span class="string">&quot;数学&quot;</span>:<span class="number">66</span>,</span><br><span class="line">        <span class="string">&quot;英语&quot;</span>:<span class="number">55</span></span><br><span class="line">    &#125;, <span class="string">&quot;李四&quot;</span>:&#123;</span><br><span class="line">        <span class="string">&quot;语文&quot;</span>:<span class="number">88</span>,</span><br><span class="line">        <span class="string">&quot;数学&quot;</span>:<span class="number">77</span>,</span><br><span class="line">        <span class="string">&quot;英语&quot;</span>:<span class="number">66</span></span><br><span class="line">    &#125;, <span class="string">&quot;小明&quot;</span>:&#123;</span><br><span class="line">        <span class="string">&quot;语文&quot;</span>:<span class="number">99</span>,</span><br><span class="line">        <span class="string">&quot;数学&quot;</span>:<span class="number">88</span>,</span><br><span class="line">        <span class="string">&quot;英语&quot;</span>:<span class="number">66</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="（5）从嵌套的字典中获取数据"><a href="#（5）从嵌套的字典中获取数据" class="headerlink" title="（5）从嵌套的字典中获取数据"></a>（5）从嵌套的字典中获取数据</h3><p>如查看以上定义的字典，查看小明的语文成绩，如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看小明的语文成绩</span></span><br><span class="line">data = my_dict[<span class="string">&quot;小明&quot;</span>][<span class="string">&quot;语文&quot;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;小明的语文成绩是：<span class="subst">&#123;data&#125;</span>&quot;</span>)   <span class="comment"># 输出结果为：99</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="（6）字典的注意事项"><a href="#（6）字典的注意事项" class="headerlink" title="（6）字典的注意事项"></a>（6）字典的注意事项</h3><ul>
+<li>键值对的Key和Value可以是任意类型(Key不可为字典)</li>
+<li>字典内<strong>Key不允许重复</strong>，重复添加等同于覆盖原有数据</li>
+<li>字典<strong>不可用下标索引</strong>，而是通过Key检索Value</li>
+</ul>
+<h3 id="（7）字典的常用操作"><a href="#（7）字典的常用操作" class="headerlink" title="（7）字典的常用操作"></a>（7）字典的常用操作</h3><ul>
+<li><p>新增元素&#x2F;更新元素</p>
+<ul>
+<li><p>语法：<strong>字典[key] &#x3D; Value</strong></p>
+</li>
+<li><p>结果：字典被修改，新增了元素&#x2F;元素被更新</p>
+</li>
+<li><p>注意：字典Key不可以重复，所以对已存在的Key执行上述操作，就是更新Value值；如果Key不存在即新增，如果Key存在即更新 (Key不可重复)</p>
+</li>
+</ul>
+</li>
+<li><p>删除元素</p>
+<ul>
+<li><p>语法：<strong>字典.pop(Key)</strong></p>
+</li>
+<li><p>结果：获得指定Key的Value，同时字典被修改，指定Key的数据被删除</p>
+</li>
+</ul>
+</li>
+<li><p>清空字典</p>
+<ul>
+<li><p>语法：<strong>字典.clear()</strong></p>
+</li>
+<li><p>结果:字典被修改，元素被清空</p>
+</li>
+</ul>
+</li>
+<li><p>获取全部的Key</p>
+<ul>
+<li><p>语法：<strong>字典.keys()</strong></p>
+</li>
+<li><p>结果：得到字典中的全部Key</p>
+</li>
+</ul>
+</li>
+<li><p>字典的遍历</p>
+<p>方式一：通过keys获取全部的Key来使用for循环进行遍历。</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> keys:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;字典的key是:<span class="subst">&#123;key&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;字典的value是: (my_dict[key]&#125;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>​		方式二：直接对字典进行for循环，每一次循环都是直接得到Key。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> my_dict:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;字典的key是:<span class="subst">&#123;key&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;字典的value是: (my_dict[key]&#125;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>统计字典的元素数量</p>
+<p>语法：<strong>len(字典)</strong></p>
+</li>
+</ul>
+<h3 id="（8）字典的常用操作总结"><a href="#（8）字典的常用操作总结" class="headerlink" title="（8）字典的常用操作总结"></a>（8）字典的常用操作总结</h3><table>
+<thead>
+<tr>
+<th align="center">编号</th>
+<th align="center">操作</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">字典[Key]</td>
+<td align="center">获取指定Key对应的Value值</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">字典[Key]&#x3D; Value</td>
+<td align="center">添加或更新键值对</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">字典.pop(Key)</td>
+<td align="center">取出Key对应的Value并在字典内删除此Key的键值对</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">字典.clear()</td>
+<td align="center">清空字典</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">字典.keys()</td>
+<td align="center">获取字典的全部Key，可用于for循环遍历字典</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">len(字典)</td>
+<td align="center">计算字典内的元素数量</td>
+</tr>
+</tbody></table>
+<h3 id="（9）字典的特点"><a href="#（9）字典的特点" class="headerlink" title="（9）字典的特点"></a>（9）字典的特点</h3><ul>
+<li>可以容纳多个数据</li>
+<li>可以容纳不同类型的数据</li>
+<li><strong>每一份数据是KeyValue键值对</strong></li>
+<li><strong>可以通过Key获取到Value，Key不可重复 (重复会覆盖)</strong></li>
+<li>不支持下标索引</li>
+<li><strong>可以修改</strong> (增加或删除更新元素等)</li>
+<li>支持for循环，不支持while循环</li>
+</ul>
+<h2 id="8、数据容器的总结"><a href="#8、数据容器的总结" class="headerlink" title="8、数据容器的总结"></a>8、数据容器的总结</h2><h3 id="（1）数据容器的分类"><a href="#（1）数据容器的分类" class="headerlink" title="（1）数据容器的分类"></a>（1）数据容器的分类</h3><ul>
+<li><p>是否支持下标索引：</p>
+<ul>
+<li>支持：列表、元组、字符串 - 序列类型</li>
+<li>不支持：集合、字典 - 非序列类型</li>
+</ul>
+</li>
+<li><p>是否支持重复元素：</p>
+<ul>
+<li>支持：列表、元组、字符串 - 序列类型</li>
+<li>不支持：集合、字典 - 非序列类型</li>
+</ul>
+</li>
+<li><p>是否可以修改：</p>
+<ul>
+<li>支持：列表、集合、字典</li>
+<li>不支持：元组、字符串</li>
+</ul>
+</li>
+</ul>
+<h3 id="（2）数据容器特点对比"><a href="#（2）数据容器特点对比" class="headerlink" title="（2）数据容器特点对比"></a>（2）数据容器特点对比</h3><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">列表</th>
+<th align="center">元组</th>
+<th align="center">字符串</th>
+<th align="center">集合</th>
+<th align="center">字典</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">元素数量</td>
+<td align="center">支持多个</td>
+<td align="center">支持多个</td>
+<td align="center">支持多个</td>
+<td align="center">支持多个</td>
+<td align="center">支持多个</td>
+</tr>
+<tr>
+<td align="center">元素类型</td>
+<td align="center">任意</td>
+<td align="center">任意</td>
+<td align="center"><strong>仅字符</strong></td>
+<td align="center">任意</td>
+<td align="center">Key: Value</td>
+</tr>
+<tr>
+<td align="center">下标索引</td>
+<td align="center">支持</td>
+<td align="center">支持</td>
+<td align="center">支持</td>
+<td align="center"><strong>不支持</strong></td>
+<td align="center"><strong>不支持</strong></td>
+</tr>
+<tr>
+<td align="center">重复元素</td>
+<td align="center">支持</td>
+<td align="center">支持</td>
+<td align="center">支持</td>
+<td align="center"><strong>不支持</strong></td>
+<td align="center"><strong>不支持</strong></td>
+</tr>
+<tr>
+<td align="center">可修改性</td>
+<td align="center">支持</td>
+<td align="center"><strong>不支持</strong></td>
+<td align="center"><strong>不支持</strong></td>
+<td align="center">支持</td>
+<td align="center">支持</td>
+</tr>
+<tr>
+<td align="center">数据有序</td>
+<td align="center">是</td>
+<td align="center">是</td>
+<td align="center">是</td>
+<td align="center"><strong>否</strong></td>
+<td align="center"><strong>否</strong></td>
+</tr>
+<tr>
+<td align="center">使用场景</td>
+<td align="center">可修改、可重复的一批数据记录场景</td>
+<td align="center">不可修改、可重复的一批数据记录场景</td>
+<td align="center">一串字符的记录场景</td>
+<td align="center">不可重复的数据记录场景</td>
+<td align="center">以Key检索Value的数据记录场景</td>
+</tr>
+</tbody></table>
+<h3 id="（3）各类数据容器的使用场景"><a href="#（3）各类数据容器的使用场景" class="headerlink" title="（3）各类数据容器的使用场景"></a>（3）各类数据容器的使用场景</h3><ul>
+<li>列表：一批数据，可修改、可重复的存储场景</li>
+<li>元组：一批数据，不可修改、可重复的存储场景</li>
+<li>字符串：一串字符串的存储场景</li>
+<li>集合：一批数据，去重存储场景</li>
+<li>字典：一批数据，可用Key检索Value的存储场景</li>
+</ul>
+<h3 id="（4）数据容器的通用操作"><a href="#（4）数据容器的通用操作" class="headerlink" title="（4）数据容器的通用操作"></a>（4）数据容器的通用操作</h3><h4 id="1-通用操作"><a href="#1-通用操作" class="headerlink" title="1. 通用操作"></a>1. 通用操作</h4><p>① 遍历</p>
+<ul>
+<li>5类数据容器都支持for循环遍历</li>
+<li>列表、元组、字符串支持while循环，集合、字典不支持 (无法下标索引)</li>
+</ul>
+<p>尽管遍历的形式各有不同，但是，它们都支持遍历操作。</p>
+<p>② 统计容器元素个数</p>
+<p>语法：len(容器)</p>
+<p>③ 统计容器的最大元素</p>
+<p>语法：max(容器)</p>
+<p>④ 统计容器的最小元素</p>
+<p>语法：min(容器)</p>
+<h4 id="2-容器的通用转换功能"><a href="#2-容器的通用转换功能" class="headerlink" title="2.容器的通用转换功能"></a>2.容器的通用转换功能</h4><p>① 将给定容器转换为列表</p>
+<p>语法：list(容器)</p>
+<p>②  将给定容器转换为字符串</p>
+<p>语法：str(容器)</p>
+<p>③  将给定容器转换为元组</p>
+<p>语法：tuple(容器)</p>
+<p>④  将给定容器转换为集合</p>
+<p>语法：set(容器)</p>
+<h4 id="3-容器的通用排序功能"><a href="#3-容器的通用排序功能" class="headerlink" title="3.容器的通用排序功能"></a>3.容器的通用排序功能</h4><p>通用排序功能</p>
+<p>将给定容器进行排序</p>
+<p>语法：<strong>sorted(容器, [reverse &#x3D; True])</strong></p>
+<p>注意：1、reverse（反转）默认false，控制从小到大（false）或者从大到小（True）的排序。</p>
+<p>​			2、排序的结果会变成列表对象。</p>
+<h3 id="（5）容器通用功能总览"><a href="#（5）容器通用功能总览" class="headerlink" title="（5）容器通用功能总览"></a>（5）容器通用功能总览</h3><table>
+<thead>
+<tr>
+<th align="center">功能</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">通用for循环</td>
+<td align="center">遍历容器 (字典是遍历key)</td>
+</tr>
+<tr>
+<td align="center">max</td>
+<td align="center">容器内最大元素</td>
+</tr>
+<tr>
+<td align="center">min()</td>
+<td align="center">容器内最小元素</td>
+</tr>
+<tr>
+<td align="center">len()</td>
+<td align="center">容器元素个数</td>
+</tr>
+<tr>
+<td align="center">list()</td>
+<td align="center">转换为列表</td>
+</tr>
+<tr>
+<td align="center">tuple()</td>
+<td align="center">转换为元组</td>
+</tr>
+<tr>
+<td align="center">str()</td>
+<td align="center">转换为字符串</td>
+</tr>
+<tr>
+<td align="center">set()</td>
+<td align="center">转换为集合</td>
+</tr>
+<tr>
+<td align="center">sorted(序列, [reverse &#x3D; True])</td>
+<td align="center">排序，reverse&#x3D;True表示降序得到一个<strong>排好序的列表</strong></td>
+</tr>
+</tbody></table>
+<h2 id="七、拓展-字符串大小比较"><a href="#七、拓展-字符串大小比较" class="headerlink" title="七、拓展 - 字符串大小比较"></a>七、拓展 - 字符串大小比较</h2><h3 id="1、ASCII码表"><a href="#1、ASCII码表" class="headerlink" title="1、ASCII码表"></a>1、ASCII码表</h3><p>在程序中，字符串所用的所有字符如:</p>
+<ul>
+<li>大小写英文单词</li>
+<li>数字</li>
+<li>特殊符号(!、\、|、@、#、空格等)</li>
+</ul>
+<p>都有其对应的ASCII码表值，每一个字符都能对应上一个:数字的码值。</p>
+<p>字符串进行比较就是基于数字的码值大小进行比较的。</p>
+<h3 id="2、字符串比较"><a href="#2、字符串比较" class="headerlink" title="2、字符串比较"></a>2、字符串比较</h3><p>字符串是按位比较，也就是一位位进行对比，只要有一位大，那么整体就大。</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://alanblog.cn">Alan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://alanblog.cn/posts/abca82ee.html">http://alanblog.cn/posts/abca82ee.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://alanblog.cn" target="_blank">Alan & Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a></div><div class="post_share"><div class="social-share" data-image="https://alan.s3.bitiful.net/img/img_C_14.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.staticfile.org/butterfly-extsrc/1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.staticfile.org/butterfly-extsrc/1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/9bdc6e36.html" title="Python学习笔记（一）"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://alan.s3.bitiful.net/img/img_C_14.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-13</div><div class="title">Python学习笔记（一）</div></div></a></div><div><a href="/posts/e6d421bc.html" title="Python学习笔记（三）"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://alan.s3.bitiful.net/img/img_C_14.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-15</div><div class="title">Python学习笔记（三）</div></div></a></div><div><a href="/posts/51f938d9.html" title="Python学习笔记（四）"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://alan.s3.bitiful.net/img/img_C_14.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-16</div><div class="title">Python学习笔记（四）</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81python%E6%95%B0%E6%8D%AE%E5%AE%B9%E5%99%A8"><span class="toc-text">六、python数据容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%95%B0%E6%8D%AE%E5%AE%B9%E5%99%A8%E7%9A%84%E5%85%A5%E9%97%A8"><span class="toc-text">1、数据容器的入门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E6%95%B0%E6%8D%AE%E5%AE%B9%E5%99%A8%EF%BC%9Alist%EF%BC%88%E5%88%97%E8%A1%A8%EF%BC%89"><span class="toc-text">2、数据容器：list（列表）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E5%88%97%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">（1）列表的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%88%97%E8%A1%A8%E7%9A%84%E4%B8%8B%E6%A0%87%E7%B4%A2%E5%BC%95"><span class="toc-text">（2）列表的下标索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E5%88%97%E8%A1%A8%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="toc-text">（3）列表的常用操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A0-%E5%88%97%E8%A1%A8%E7%9A%84%E6%9F%A5%E8%AF%A2%E5%8A%9F%E8%83%BD-%E6%96%B9%E6%B3%95"><span class="toc-text">① 列表的查询功能(方法)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A1-%E5%88%97%E8%A1%A8%E7%9A%84%E4%BF%AE%E6%94%B9%E5%8A%9F%E8%83%BD-%E6%96%B9%E6%B3%95"><span class="toc-text">② 列表的修改功能(方法)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A2-%E5%88%97%E8%A1%A8%E7%9A%84%E4%BF%AE%E6%94%B9%E5%8A%9F%E8%83%BD-%E6%96%B9%E6%B3%95"><span class="toc-text">③ 列表的修改功能(方法)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#a-%E6%8F%92%E5%85%A5%E5%85%83%E7%B4%A0"><span class="toc-text">a.插入元素:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#b-%E8%BF%BD%E5%8A%A0%E5%85%83%E7%B4%A0-01%EF%BC%9A"><span class="toc-text">b.追加元素-01：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#b-%E8%BF%BD%E5%8A%A0%E5%85%83%E7%B4%A0-02%EF%BC%9A"><span class="toc-text">b.追加元素-02：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#c-%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-text">c.删除元素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#d-%E5%88%A0%E9%99%A4%E6%9F%90%E5%85%83%E7%B4%A0%E5%9C%A8%E5%88%97%E8%A1%A8%E4%B8%AD%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8C%B9%E9%85%8D%E9%A1%B9"><span class="toc-text">d.删除某元素在列表中的第一个匹配项</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#e-%E6%B8%85%E7%A9%BA%E5%88%97%E8%A1%A8%E5%86%85%E5%AE%B9"><span class="toc-text">e.清空列表内容</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A3-%E7%BB%9F%E8%AE%A1%E5%85%83%E7%B4%A0"><span class="toc-text">④ 统计元素</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#a-%E7%BB%9F%E8%AE%A1%E6%9F%90%E5%85%83%E7%B4%A0%E5%9C%A8%E5%88%97%E8%A1%A8%E5%86%85%E7%9A%84%E6%95%B0%E9%87%8F"><span class="toc-text">a.统计某元素在列表内的数量</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#b-%E7%BB%9F%E8%AE%A1%E5%88%97%E8%A1%A8%E5%86%85%EF%BC%8C%E6%9C%89%E5%A4%9A%E5%B0%91%E5%85%83%E7%B4%A0"><span class="toc-text">b.统计列表内，有多少元素</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A4-%E6%80%BB%E7%BB%93"><span class="toc-text">⑤ 总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89list%EF%BC%88%E5%88%97%E8%A1%A8%EF%BC%89%E7%9A%84%E9%81%8D%E5%8E%86"><span class="toc-text">（4）list（列表）的遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A0-while%E5%BE%AA%E7%8E%AF"><span class="toc-text">① while循环</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A1-for%E5%BE%AA%E7%8E%AF"><span class="toc-text">② for循环</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A2-whlie%E5%92%8Cfor%E5%BE%AA%E7%8E%AF%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-text">③ whlie和for循环的对比</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E6%95%B0%E6%8D%AE%E5%AE%B9%E5%99%A8-tuple%EF%BC%88%E5%85%83%E7%BB%84%EF%BC%89"><span class="toc-text">3、数据容器: tuple（元组）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%85%83%E7%BB%84%EF%BC%9F"><span class="toc-text">（1）为什么需要元组？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%85%83%E7%BB%84%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">（2）元组的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E5%85%83%E7%BB%84%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-text">（3）元组的操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E5%85%83%E7%BB%84%E7%9A%84%E9%81%8D%E5%8E%86"><span class="toc-text">（4）元组的遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%885%EF%BC%89%E5%85%83%E7%BB%84%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">（5）元组的特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E6%95%B0%E6%8D%AE%E5%AE%B9%E5%99%A8%EF%BC%9Astr%EF%BC%88%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%89"><span class="toc-text">4、数据容器：str（字符串）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%B8%8B%E6%A0%87%EF%BC%88%E7%B4%A2%E5%BC%95%EF%BC%89"><span class="toc-text">（1）字符串的下标（索引）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-text">（2）字符串的操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%B1%87%E6%80%BB"><span class="toc-text">（3）字符串常用操作汇总</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E9%81%8D%E5%8E%86"><span class="toc-text">（4）字符串的遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%885%EF%BC%89%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">（5）字符串的特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E6%95%B0%E6%8D%AE%E5%AE%B9%E5%99%A8%E7%9A%84%E5%88%87%E7%89%87"><span class="toc-text">5、数据容器的切片</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E5%BA%8F%E5%88%97"><span class="toc-text">（1）序列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%BA%8F%E5%88%97%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C-%E5%88%87%E7%89%87"><span class="toc-text">（2）序列的常用操作 - 切片</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81%E6%95%B0%E6%8D%AE%E5%AE%B9%E5%99%A8-%EF%BC%9Aset%EF%BC%88%E9%9B%86%E5%90%88%EF%BC%89"><span class="toc-text">6、数据容器:：set（集合）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E9%9B%86%E5%90%88"><span class="toc-text">（1）为什么使用集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E9%9B%86%E5%90%88%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%9A"><span class="toc-text">（2）集合的定义：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E9%9B%86%E5%90%88%EF%BC%88set%EF%BC%89%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%9F%BA%E6%9C%AC%E7%89%B9%E7%82%B9"><span class="toc-text">（3）集合（set）的两个基本特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E9%9B%86%E5%90%88%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C-%E4%BF%AE%E6%94%B9"><span class="toc-text">（4）集合的常用操作 - 修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%885%EF%BC%89%E9%9B%86%E5%90%88%E7%9A%84%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD%E6%80%BB%E7%BB%93"><span class="toc-text">（5）集合的常用功能总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%886%EF%BC%89%E9%9B%86%E5%90%88%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">（6）集合的特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%E3%80%81%E6%95%B0%E6%8D%AE%E5%AE%B9%E5%99%A8%EF%BC%9Adict%EF%BC%88%E5%AD%97%E5%85%B8%E3%80%81%E6%98%A0%E5%B0%84%EF%BC%89"><span class="toc-text">7、数据容器：dict（字典、映射）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E5%AD%97%E5%85%B8"><span class="toc-text">（1）为什么使用字典</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%AD%97%E5%85%B8%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">（2）字典的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E5%AD%97%E5%85%B8%E6%95%B0%E6%8D%AE%E7%9A%84%E8%8E%B7%E5%8F%96"><span class="toc-text">（3）字典数据的获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E5%AD%97%E5%85%B8%E7%9A%84%E5%B5%8C%E5%A5%97"><span class="toc-text">（4）字典的嵌套</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%885%EF%BC%89%E4%BB%8E%E5%B5%8C%E5%A5%97%E7%9A%84%E5%AD%97%E5%85%B8%E4%B8%AD%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-text">（5）从嵌套的字典中获取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%886%EF%BC%89%E5%AD%97%E5%85%B8%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">（6）字典的注意事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%887%EF%BC%89%E5%AD%97%E5%85%B8%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="toc-text">（7）字典的常用操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%888%EF%BC%89%E5%AD%97%E5%85%B8%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93"><span class="toc-text">（8）字典的常用操作总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%889%EF%BC%89%E5%AD%97%E5%85%B8%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">（9）字典的特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8%E3%80%81%E6%95%B0%E6%8D%AE%E5%AE%B9%E5%99%A8%E7%9A%84%E6%80%BB%E7%BB%93"><span class="toc-text">8、数据容器的总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E6%95%B0%E6%8D%AE%E5%AE%B9%E5%99%A8%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">（1）数据容器的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E6%95%B0%E6%8D%AE%E5%AE%B9%E5%99%A8%E7%89%B9%E7%82%B9%E5%AF%B9%E6%AF%94"><span class="toc-text">（2）数据容器特点对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E5%90%84%E7%B1%BB%E6%95%B0%E6%8D%AE%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">（3）各类数据容器的使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E6%95%B0%E6%8D%AE%E5%AE%B9%E5%99%A8%E7%9A%84%E9%80%9A%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="toc-text">（4）数据容器的通用操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%80%9A%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="toc-text">1. 通用操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%AE%B9%E5%99%A8%E7%9A%84%E9%80%9A%E7%94%A8%E8%BD%AC%E6%8D%A2%E5%8A%9F%E8%83%BD"><span class="toc-text">2.容器的通用转换功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%AE%B9%E5%99%A8%E7%9A%84%E9%80%9A%E7%94%A8%E6%8E%92%E5%BA%8F%E5%8A%9F%E8%83%BD"><span class="toc-text">3.容器的通用排序功能</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%885%EF%BC%89%E5%AE%B9%E5%99%A8%E9%80%9A%E7%94%A8%E5%8A%9F%E8%83%BD%E6%80%BB%E8%A7%88"><span class="toc-text">（5）容器通用功能总览</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%8B%93%E5%B1%95-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%A7%E5%B0%8F%E6%AF%94%E8%BE%83"><span class="toc-text">七、拓展 - 字符串大小比较</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81ASCII%E7%A0%81%E8%A1%A8"><span class="toc-text">1、ASCII码表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%AF%94%E8%BE%83"><span class="toc-text">2、字符串比较</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 By Alan</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a href="https://icp.gov.moe/?keyword=20231133" target="_blank">萌ICP备20231133号</a><br><a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png"align="absmiddle" width="59px" height="30px" /></a><span>提供资源CDN加速服务</span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.staticfile.org/fancyapps-ui/5.0.19/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.staticfile.org/instant.page/5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.staticfile.org/vanilla-lazyload/17.8.3/lazyload.iife.min.js"></script><script src="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.staticfile.org/pangu/4.0.7/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script defer src="/js/monitoring.js?v=2.0"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script async src="https://cdn1.tianli0.top/npm/vue@2.6.14/dist/vue.min.js"></script><script async src="https://cdn1.tianli0.top/npm/element-ui@2.15.6/lib/index.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="130" mobile="false" src="https://cdn.staticfile.org/butterfly-extsrc/1.1.3/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.staticfile.org/butterfly-extsrc/1.1.3/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="http://alanblog.cn/categories/Python/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📕 Alan & Python (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://alanblog.cn/categories/数据结构/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 Alan & 数据结构 (3)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://alanblog.cn/categories/大数据技术/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 Alan & 大数据技术 (3)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://alanblog.cn/categories/Luinx操作系统/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📗 Alan & 操作系统 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://alanblog.cn/categories/计算机操作/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📗 Alan & 电脑操作 (5)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://alanblog.cn/categories/笔记/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📘 Alan & 其他笔记 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="http://alanblog.cn/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(33.333333333333336% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #69e8f2}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站源码由Github托管" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用Vercel平台部署" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-Vervel-black?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://staticfile.org/" style="margin-inline:5px" data-title="本站使用staticfile为部分静态资源提供CDN加速" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-Staticfile-brightgreen?style=flat&amp;logo=lightning" alt=""/></a><a class="github-badge" target="_blank" href="https://www.dogecast.com/" style="margin-inline:5px" data-title="本站由缤纷云提供资源储存服务" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://sourcebucket.s3.bitiful.net/badge/Bucket-%E7%BC%A4%E7%BA%B7%E4%BA%91-9c62da.svg" alt=""/></a><a class="github-badge" target="_blank" href="https://www.51.la/" style="margin-inline:5px" data-title="本站数据分析由51.la提供技术支持" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Analytics-51.la-blue?style=flat&amp;logo=googleanalytics" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="/js/runtime.js"></script><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/605099a7.html" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://alan.s3.bitiful.net/iu_img/iu_d.webp" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-11-13</span><a class="blog-slider__title" href="posts/605099a7.html" alt="">Hexo安装以及基本命令</a><div class="blog-slider__text">Hexo的安装教程</div><a class="blog-slider__button" href="posts/605099a7.html" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/4e52c25a.html" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://alan.s3.bitiful.net/img/cat-1044914_1280.webp" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-08-30</span><a class="blog-slider__title" href="posts/4e52c25a.html" alt="">VMware的和Linux操作系统的安装搭建</a><div class="blog-slider__text">VMware的和Linux操作系统的安装搭建</div><a class="blog-slider__button" href="posts/4e52c25a.html" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/2cd70beb.html" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://alan.s3.bitiful.net/iu_img/iu_c.webp" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-11-13</span><a class="blog-slider__title" href="posts/2cd70beb.html" alt="">Node.js安装以及nvm版本管理</a><div class="blog-slider__text">Node.js的安装教程以及使用nvm对其版本管理</div><a class="blog-slider__button" href="posts/2cd70beb.html" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/2013454d.html" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://alan.s3.bitiful.net/img/Markdown.webp" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-09-01</span><a class="blog-slider__title" href="posts/2013454d.html" alt="">Markdown语法与外挂标签写法汇总</a><div class="blog-slider__text">Markdown语法与外挂标签写法汇总</div><a class="blog-slider__button" href="posts/2013454d.html" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/3de1b813.html" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://alan.s3.bitiful.net/iu_img/iu_b.webp" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-11-13</span><a class="blog-slider__title" href="posts/3de1b813.html" alt="">Anaconda安装以及命令</a><div class="blog-slider__text">Anaconda的安装教程</div><a class="blog-slider__button" href="posts/3de1b813.html" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/9bdc6e36.html" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://alan.s3.bitiful.net/img/img_C_14.webp" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-08-13</span><a class="blog-slider__title" href="posts/9bdc6e36.html" alt="">Python学习笔记（一）</a><div class="blog-slider__text">Python的学习笔记，python的基础知识</div><a class="blog-slider__button" href="posts/9bdc6e36.html" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/15720db2.html" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://alan.s3.bitiful.net/img/git.webp" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-10-30</span><a class="blog-slider__title" href="posts/15720db2.html" alt="">Git常用命令汇总</a><div class="blog-slider__text">git命令集合</div><a class="blog-slider__button" href="posts/15720db2.html" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><script data-pjax src="https://cdn.cbd.int/hexo-filter-gitcalendar/lib/gitcalendar.js"></script><script data-pjax>
+  function gitcalendar_injector_config(){
+      var parent_div_git = document.getElementById('gitZone');
+      var item_html = '<div class="recent-post-item" id="gitcalendarBar" style="width:100%;height:auto;padding:10px;"><style>#git_container{min-height: 280px}@media screen and (max-width:650px) {#git_container{min-height: 0px}}</style><div id="git_loading" style="width:10%;height:100%;margin:0 auto;display: block;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animatetransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animatetransform></path></svg><style>#git_container{display: none;}</style></div><div id="git_container"></div></div>';
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      console.log('已挂载gitcalendar')
+      }
+
+    if( document.getElementById('gitZone') && (location.pathname ==='/directory/site/charts/'|| '/directory/site/charts/' ==='all')){
+        gitcalendar_injector_config()
+        GitCalendarInit("https://github-calendar-api.alanblog.cn/api?lanxin1216",['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'],'lanxin1216')
+    }
+  </script><!-- hexo injector body_end end --></body></html>

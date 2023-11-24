@@ -1,0 +1,84 @@
+/*电子钟字体*/
+/* @font-face {  删除字体
+  font-family: 'SIMFANG';
+  src: url("path/to/SIMFANG.TTF");
+  font-display: swap;
+} */
+div#runtime {
+  width: 400px;
+  margin: auto;
+  color: #fff;
+  padding-inline: 10px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  font-family: 'SIMFANG';
+}
+[data-theme="dark"] div#runtime {
+  color: #28b4c8;
+  box-shadow: 0 0 5px rgba(28,69,218,0.71);
+  animation: flashlight 1s linear infinite alternate;
+}
+
+/*悬停显示徽标提示语*/
+
+a.github-badge {
+  position: relative;
+}
+
+a.github-badge:hover:before {
+  position: absolute;
+  display: inline-block; /* 让提示框的宽度根据内容自适应 */
+  white-space: nowrap; /* 确保内容不换行 */
+  width: auto;
+  margin: auto;
+  left: 0;
+  top: 50%;
+  height: auto; /* 设置高度为auto，让提示框高度根据内容自适应 */
+  margin-top: 10px;
+  border-radius: 0px;
+  text-align: center;
+  z-index: 100;
+  content: attr(data-title);
+  font-size: 12px;
+  color: #fff;
+  padding: 5px;
+  background-color: rgb(51, 49, 49);
+  box-shadow: 0 0 5px rgb(255, 255, 255); /* 添加白边效果 */
+}
+[data-theme=dark] a.github-badge:hover:before {
+  background-color: rgba(51,49,49,0.8);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* 添加白边效果 */
+}
+
+@-moz-keyframes flashlight {
+  from {
+    box-shadow: 0 0 5px #1478d2;
+  }
+  to {
+    box-shadow: 0 0 2px #1478d2;
+  }
+}
+@-webkit-keyframes flashlight {
+  from {
+    box-shadow: 0 0 5px #1478d2;
+  }
+  to {
+    box-shadow: 0 0 2px #1478d2;
+  }
+}
+@-o-keyframes flashlight {
+  from {
+    box-shadow: 0 0 5px #1478d2;
+  }
+  to {
+    box-shadow: 0 0 2px #1478d2;
+  }
+}
+@keyframes flashlight {
+  from {
+    box-shadow: 0 0 5px #1478d2;
+  }
+  to {
+    box-shadow: 0 0 2px #1478d2;
+  }
+}
