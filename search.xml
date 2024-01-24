@@ -252,7 +252,7 @@
           
           <category> 数据结构 </category>
           
-          <category> 学习笔记 </category>
+          <category> 笔记 </category>
           
       </categories>
       
@@ -283,7 +283,7 @@
           
           <category> 数据结构 </category>
           
-          <category> 学习笔记 </category>
+          <category> 笔记 </category>
           
       </categories>
       
@@ -312,7 +312,7 @@
           
           <category> 数据结构 </category>
           
-          <category> 学习笔记 </category>
+          <category> 笔记 </category>
           
       </categories>
       
@@ -794,7 +794,7 @@
       <link href="/directory/link/index.html"/>
       <url>/directory/link/index.html</url>
       
-        <content type="html"><![CDATA[<hr><h1 id="欢迎添加本站友链🍔"><a href="#欢迎添加本站友链🍔" class="headerlink" title="欢迎添加本站友链🍔"></a>欢迎添加本站友链🍔</h1><h1 id="本站友链🍟"><a href="#本站友链🍟" class="headerlink" title="本站友链🍟"></a>本站友链🍟</h1><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Alan&amp;Blog</span></span><br><span class="line">  <span class="attr">link:</span> <span class="string">https://www.alanblog.cn/</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">https://alan.s3.bitiful.net/img/avatar.png</span></span><br><span class="line">  <span class="attr">descr:</span> <span class="string">学习笔记，计算机技术分享</span></span><br></pre></td></tr></table></figure><h1 id="申请格式🌭"><a href="#申请格式🌭" class="headerlink" title="申请格式🌭"></a>申请格式🌭</h1><p><strong>（添加友链格式如下，siteshot为站点背景）</strong></p><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="comment">#站点名称</span></span><br><span class="line">  <span class="attr">link:</span> <span class="comment">#站点链接</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="comment">#站长头像</span></span><br><span class="line">  <span class="attr">descr:</span> <span class="comment">#站点描述</span></span><br></pre></td></tr></table></figure><div class="tip "><p>由于本站已经关闭评论系统，添加友链直接邮件至：<a href="mailto:&#51;&#48;&#50;&#57;&#x39;&#57;&#55;&#x30;&#x32;&#53;&#x40;&#113;&#x71;&#46;&#99;&#111;&#109;">&#51;&#48;&#50;&#57;&#x39;&#57;&#55;&#x30;&#x32;&#53;&#x40;&#113;&#x71;&#46;&#99;&#111;&#109;</a> (2023&#x2F;11&#x2F;*)！</p></div><blockquote><p>注意： </p><blockquote><p>1、本站支持交换友链，在您提出申请之前，请将本站添加至友链；<br>2、为了保障本站用户，本站仅支持个人网站的友链申请；<br>3、申请本站友链需要拥有独立域名（非免费域名），建议开启全站HTTPS；<br><del>4、下面按钮，快速申请友链。</del>（快捷方式已经删除）</p></blockquote></blockquote><blockquote><p>欢迎更多的小伙伴互加，一起学习一起成长~~~🥪🌮🥤</p></blockquote><!-- <div class="addBtn"> <button onclick="leonus.linkCom(&quot;bf&quot;)"><i class="fa-solid fa-circle-plus"></i>快速申请 (Butterfly)</button> <button onclick="leonus.linkCom()"><i class="fa-solid fa-circle-plus"></i>快速申请 (默认样式)</button></div><link rel="stylesheet" href="/css/kslink.css"><script src="/js/kslink.js"></script> -->]]></content>
+        <content type="html"><![CDATA[<hr><h1 id="欢迎添加本站友链🍔"><a href="#欢迎添加本站友链🍔" class="headerlink" title="欢迎添加本站友链🍔"></a>欢迎添加本站友链🍔</h1><h1 id="本站友链🍟"><a href="#本站友链🍟" class="headerlink" title="本站友链🍟"></a>本站友链🍟</h1><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Alan&amp;Blog</span></span><br><span class="line">  <span class="attr">link:</span> <span class="string">https://www.alanblog.cn/</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">https://alan.s3.bitiful.net/img/avatar.png</span></span><br><span class="line">  <span class="attr">descr:</span> <span class="string">学习笔记，计算机技术分享</span></span><br></pre></td></tr></table></figure><h1 id="申请格式🌭"><a href="#申请格式🌭" class="headerlink" title="申请格式🌭"></a>申请格式🌭</h1><p><strong>（添加友链格式如下，siteshot为站点背景）</strong></p><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="comment">#站点名称</span></span><br><span class="line">  <span class="attr">link:</span> <span class="comment">#站点链接</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="comment">#站长头像</span></span><br><span class="line">  <span class="attr">descr:</span> <span class="comment">#站点描述</span></span><br></pre></td></tr></table></figure><div class="tip "><p>由于本站已经关闭评论系统，添加友链直接邮件至：<a href="mailto:&#x33;&#48;&#x32;&#x39;&#x39;&#x39;&#55;&#48;&#x32;&#53;&#64;&#x71;&#113;&#x2e;&#x63;&#x6f;&#109;">&#x33;&#48;&#x32;&#x39;&#x39;&#x39;&#55;&#48;&#x32;&#53;&#64;&#x71;&#113;&#x2e;&#x63;&#x6f;&#109;</a> (2023&#x2F;11&#x2F;*)！</p></div><blockquote><p>注意： </p><blockquote><p>1、本站支持交换友链，在您提出申请之前，请将本站添加至友链；<br>2、为了保障本站用户，本站仅支持个人网站的友链申请；<br>3、申请本站友链需要拥有独立域名（非免费域名），建议开启全站HTTPS；<br><del>4、下面按钮，快速申请友链。</del>（快捷方式已经删除）</p></blockquote></blockquote><blockquote><p>欢迎更多的小伙伴互加，一起学习一起成长~~~🥪🌮🥤</p></blockquote><!-- <div class="addBtn"> <button onclick="leonus.linkCom(&quot;bf&quot;)"><i class="fa-solid fa-circle-plus"></i>快速申请 (Butterfly)</button> <button onclick="leonus.linkCom()"><i class="fa-solid fa-circle-plus"></i>快速申请 (默认样式)</button></div><link rel="stylesheet" href="/css/kslink.css"><script src="/js/kslink.js"></script> -->]]></content>
       
     </entry>
     
