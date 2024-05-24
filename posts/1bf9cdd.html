@@ -1,0 +1,590 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>javaWeb（五）--springBootWeb请求响应 | Alan &amp; Blog</title><meta name="author" content="Alan"><meta name="copyright" content="Alan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="javaWeb学习笔记（五）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javaWeb（五）--springBootWeb请求响应">
+<meta property="og:url" content="http://alanblog.cn/posts/1bf9cdd.html">
+<meta property="og:site_name" content="Alan &amp; Blog">
+<meta property="og:description" content="javaWeb学习笔记（五）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://alan.s3.bitiful.net/blog_Images/2024/05/%E4%B8%8B%E8%BD%BD.jpg">
+<meta property="article:published_time" content="2024-05-17T12:35:33.000Z">
+<meta property="article:modified_time" content="2024-05-24T15:59:56.325Z">
+<meta property="article:author" content="Alan">
+<meta property="article:tag" content="javaWeb">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://alan.s3.bitiful.net/blog_Images/2024/05/%E4%B8%8B%E8%BD%BD.jpg"><link rel="shortcut icon" href="/img/trademark.png"><link rel="canonical" href="http://alanblog.cn/posts/1bf9cdd.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.staticfile.org/fancyapps-ui/5.0.19/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":1000,"languages":{"author":"作者: Alan","link":"链接: ","source":"来源: Alan & Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#87CEFA","bgDark":"#87CEFA","position":"top-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.staticfile.org/flickr-justified-gallery/2.1.2/fjGallery.min.js',
+      css: 'https://cdn.staticfile.org/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'javaWeb（五）--springBootWeb请求响应',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-24 23:59:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 22
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css?v=2.2" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/echarts@4.9.0/dist/echarts.min.js"></script><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="https://cdn1.tianli0.top/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/runtime.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/hexo-filter-gitcalendar/lib/gitcalendar.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">41</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 网站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/directory/site/charts/"><i class="fa-fw fas fa-chart-pie"></i><span> 文章统计</span></a></li><li><a class="site-page child" href="/directory/site/log/"><i class="fa-fw fas fa-timeline"></i><span> 更新日志</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-link"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/directory/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/directory/website/"><i class="fa-fw fas fa-link"></i><span> 网站链接</span></a></li><li><a class="site-page child" href="/directory/learn/"><i class="fa-fw fas fa-graduation-cap"></i><span> 学习表</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/directory/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('http://alan.s3.bitiful.net/blog_Images/2024/05/%E4%B8%8B%E8%BD%BD.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Alan &amp; Blog"><span class="site-name">Alan &amp; Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 网站</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/directory/site/charts/"><i class="fa-fw fas fa-chart-pie"></i><span> 文章统计</span></a></li><li><a class="site-page child" href="/directory/site/log/"><i class="fa-fw fas fa-timeline"></i><span> 更新日志</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-link"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/directory/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/directory/website/"><i class="fa-fw fas fa-link"></i><span> 网站链接</span></a></li><li><a class="site-page child" href="/directory/learn/"><i class="fa-fw fas fa-graduation-cap"></i><span> 学习表</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/directory/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">javaWeb（五）--springBootWeb请求响应</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-17T12:35:33.000Z" title="发表于 2024-05-17 20:35:33">2024-05-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-24T15:59:56.325Z" title="更新于 2024-05-24 23:59:56">2024-05-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/javaWeb/">javaWeb</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>16分钟</span></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="javaWeb（五）–SpringBootWeb请求响应"><a href="#javaWeb（五）–SpringBootWeb请求响应" class="headerlink" title="javaWeb（五）–SpringBootWeb请求响应"></a>javaWeb（五）–SpringBootWeb请求响应</h1><h2 id="请求响应原理"><a href="#请求响应原理" class="headerlink" title="请求响应原理"></a>请求响应原理</h2><p>在SpringBoot中内置了Tomcat服务器，在浏览器发起请求，请求了后端web服务器(也就是内置的Tomcat)。请求会被部署在Tomcat中的Controller接收，然后Controller再给浏览器一个响应，而在请求响应的过程中是遵循HTTP协议。</p>
+<p>其实在Tomcat这类Web服务器中，是不识别我们自己定义的Controller的，Tomcat是一个Servlet容器，是支持Serlvet规范的。所以tomcat中是可以识别 Servlet程序。</p>
+<p>在SpringBoot进行web程序开发时，它内置了一个核心的Servlet程序<strong>DispatcherServlet</strong>，称之为 <strong>核心控制器</strong>。 <strong>DispatcherServlet</strong> 负责接收页面发送的请求，然后根据执行的规则，将请求再转发给后面的请求处理器<strong>Controller</strong>，请求处理器处理完请求之后，最终再由<strong>DispatcherServlet</strong>给浏览器响应数据。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://alan.s3.bitiful.net/blog_Images/2024/05/image-20240516231427056.png" alt="image-20240516231427056"></p>
+<p>浏览器发送请求，会携带请求数据，包括：<strong>请求行、请求头</strong>；请求到达tomcat之后，tomcat会<br>负责解析这些请求数据，然后将解析后的请求数据会传递给Servlet程序的<strong>HttpServletRequest</strong><br>对象， <strong>HttpServletRequest</strong> 对象就可以获取到请求数据。 而Tomcat，还给Servlet程序传递了一个参数 <strong>HttpServletResponse</strong>，通过这个对象，就可以给浏览器设置响应数据 。</p>
+<blockquote>
+<p>这种浏览器&#x2F;服务器的架构模式。<strong>称之为：BS架构。</strong></p>
+<p><strong>BS架构：</strong>Browser&#x2F;Server，浏览器&#x2F;服务器架构模式。客户端只需要浏览器，应用程序的逻辑和数据都存储在服务端。</p>
+</blockquote>
+<h2 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h2><h3 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h3><h4 id="Postman"><a href="#Postman" class="headerlink" title="Postman"></a>Postman</h4><ul>
+<li><p>Postman是一款功能强大的网页调试与发送网页HTTP请求的Chrome插件。</p>
+</li>
+<li><p>作用：常用于进行接口测试</p>
+</li>
+</ul>
+<h4 id="Apifox"><a href="#Apifox" class="headerlink" title="Apifox"></a>Apifox</h4><p>Apifox - API 文档、调试、Mock、测试一体化协作平台。拥有接口文档管理、接口调试、Mock、自动化测试等功能，接口开发、测试、联调效率，提升 10 倍。最好用的接口文档管理工具，接口自动化测试工具。</p>
+<p>官网：<a target="_blank" rel="noopener" href="https://apifox.com/">https://apifox.com/</a></p>
+<h3 id="简单参数"><a href="#简单参数" class="headerlink" title="简单参数"></a>简单参数</h3><p>简单参数：在向服务器发起请求时，向服务器传递的是一些普通的请求数据。</p>
+<ul>
+<li>原始方式</li>
+<li>SpringBoot方式</li>
+</ul>
+<h4 id="原始方式"><a href="#原始方式" class="headerlink" title="原始方式"></a>原始方式</h4><p>原始的Web程序当中，需要通过Servlet中提供的API：<strong>HttpServletRequest</strong>(请求对象)，获取<br>请求的相关信息。</p>
+<blockquote>
+<p>Tomcat接收到http请求时：把请求的相关信息<strong>封装到HttpServletRequest对象中</strong></p>
+</blockquote>
+<ul>
+<li>在Controller中，要想获取Request对象，可以直接在方法的<strong>形参中声明</strong><br><strong>HttpServletRequest 对象</strong>。然后通过该对象来获取请求信息：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RequestController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 原始方法</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/simpleParam&quot;)</span> <span class="comment">// 添加注释，指定请求路径</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">simpleParam</span><span class="params">(HttpServletRequest request)</span> &#123;</span><br><span class="line">        <span class="comment">// 获取请求参数 里面输入请求参数名</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> request.getParameter(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">ageStr</span> <span class="operator">=</span> request.getParameter(<span class="string">&quot;age&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 需要手动进行类型转换，将年龄转化为int型</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> Integer.parseInt(ageStr);</span><br><span class="line"></span><br><span class="line">        System.out.println(name + <span class="string">&quot;:&quot;</span> + age);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;ok&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Api测试数据：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// http://localhost:8080/simpleParam?name=Tom&amp;age=10</span></span><br><span class="line"><span class="comment">// 请求参数: name=Tom&amp;age=10 (有2个请求参数)</span></span><br><span class="line"><span class="comment">// 第1个请求参数: name=Tom 参数名:name,参数值:Tom</span></span><br><span class="line"><span class="comment">// 第2个请求参数: age=10 参数名:age , 参数值:10</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="SpringBoot方式"><a href="#SpringBoot方式" class="headerlink" title="SpringBoot方式"></a>SpringBoot方式</h4><p>在Springboot的环境中，对原始的API进行了封装，接收参数的形式更加简单。</p>
+<p>如果是简单参数，<strong>参数名与形参变量名相同</strong>，定义同名的形参即可接收参数。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RequestController</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 基于springboot的方式</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/simpleParam&quot;)</span></span><br><span class="line">    <span class="comment">//形参名和请求参数名保持一致</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">simpleParam</span> <span class="params">(String name, Integer age)</span> &#123;</span><br><span class="line">        System.out.println(name + <span class="string">&quot;:&quot;</span> + age);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;ok&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Api测试数据：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// http://localhost:8080/simpleParam?name=Tom&amp;age=10</span></span><br><span class="line"><span class="comment">// 请求参数: name=Tom&amp;age=10 (有2个请求参数)</span></span><br><span class="line"><span class="comment">// 第1个请求参数: name=Tom 参数名:name,参数值:Tom</span></span><br><span class="line"><span class="comment">// 第2个请求参数: age=10 参数名:age , 参数值:10</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>不论是GET请求还是POST请求，对于简单参数，只要保证请求参数名和Controller方法中的形参名保持一致，就可以获取到请求参数中的数据值。</p>
+</blockquote>
+<p><strong>参数名不一致</strong></p>
+<p>如果方法形参名称与请求参数名称不一致时，直接使用上面的会出现问题：</p>
+<ul>
+<li><p>运行没有报错。 controller方法中的名称不一致的参数的值为：null</p>
+<blockquote>
+<p>对于简单参数，请求参数名和controller方法中的形参名不一致时，无法接收到请求数据</p>
+</blockquote>
+</li>
+<li><p><strong>解决办法：</strong>可以使用Spring提供的**@RequestParam**注解完成映射</p>
+<blockquote>
+<p>在方法形参前面加上 @RequestParam 然后通过value属性执行请求参数名，完成映射。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 请求参数名和方法参数名对不上</span></span><br><span class="line"><span class="comment">// 可以使用RequestParam注解进行映射</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/simpleParam&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">simpleParam</span> <span class="params">(<span class="meta">@RequestParam(name = &quot;name&quot;)</span> String useName, Integer age)</span> &#123;</span><br><span class="line">    System.out.println(useName + <span class="string">&quot;:&quot;</span> + age);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;ok&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意:</strong></p>
+<ul>
+<li><p><strong>@RequestParam</strong>中的<strong>required属性默认为true</strong>，代表该请求参数必须传递，如果不传递将报错</p>
+</li>
+<li><p>如果该<strong>参数是可选的</strong>，可以<strong>将required属性设置为false</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> String <span class="title function_">simpleParam</span><span class="params">(<span class="meta">@RequestParam(name = &quot;name&quot;, required = false)</span> String username, Integer age)</span> &#123;</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</blockquote>
+<h3 id="实体参数"><a href="#实体参数" class="headerlink" title="实体参数"></a>实体参数</h3><p>当前端传入的请求参数多个的时候，一个个定义参数接收很麻烦，可以将请求参数封装到一个实体类对象中。</p>
+<p>完成数据封装，需要遵守<strong>请求参数名与实体类的属性名相同</strong></p>
+<h4 id="简单实体对象"><a href="#简单实体对象" class="headerlink" title="简单实体对象"></a>简单实体对象</h4><ul>
+<li><p>创建一个用户实体类user</p>
+</li>
+<li><p>Controller方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RequestController01</span> &#123;</span><br><span class="line">    <span class="comment">// 实体参数，简单实体对象</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/simpleUser&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">simpleUser</span> <span class="params">(User user)</span> &#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;ok&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="复杂实体对象"><a href="#复杂实体对象" class="headerlink" title="复杂实体对象"></a>复杂实体对象</h4><p>复杂实体对象指的是，在实体类中有一个或多个属性，也是实体对象类型的。</p>
+<ul>
+<li><p>User类中有一个Address类型的属性（Address是一个实体类）</p>
+</li>
+<li><p>复杂实体对象的封装，需要遵守如下规则：</p>
+<p><strong>请求参数名与形参对象属性名相同，按照对象层次结构关系即可接收嵌套实体类属性参数。</strong></p>
+</li>
+<li><p>Address实体类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> String province; <span class="comment">//省</span></span><br><span class="line"><span class="keyword">private</span> String city;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Users实体类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="keyword">private</span> Integer age;</span><br><span class="line"><span class="keyword">private</span> Address address; <span class="comment">// 地址对象</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Controller方法</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 实体参数 ：复杂实体对象</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/complexUsers&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">complexUsers</span> <span class="params">(Users users)</span> &#123;</span><br><span class="line">    System.out.println(users);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;ok&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数组集合参数"><a href="#数组集合参数" class="headerlink" title="数组集合参数"></a>数组集合参数</h3><p>数组集合参数的使用场景：在HTML的表单中，有一个表单项是支持多选的（复选框），可以提交选择的多个值。</p>
+<p>接收多个值的方式有两种：</p>
+<ul>
+<li>数组</li>
+<li>集合</li>
+</ul>
+<h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><p>数组参数：<strong>请求参数名与形参数组名称相同且请求参数为多个，定义数组类型形参即可接收参数</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 数组集合参数</span></span><br><span class="line"><span class="meta">@RequestMapping</span> (<span class="string">&quot;/arrayParam&quot;</span>)</span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">arrayParam</span><span class="params">(String [] hobby)</span> &#123;</span><br><span class="line">    System.out.println(Arrays.toString(hobby));</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;ok&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h4><p>集合参数：请求参数名与形参集合对象名相同且请求参数为多个，**@RequestParam 绑定参数关系**</p>
+<blockquote>
+<p>默认情况下，请求中参数名相同的多个值，是封装到数组。<strong>如果要封装到集合，要使用</strong><br><strong>@RequestParam绑定参数关系</strong></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 集合参数</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/listParam&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">listParam</span> <span class="params">(<span class="meta">@RequestParam</span> List&lt;String &gt; hobby)</span> &#123;</span><br><span class="line">    System.out.println(hobby);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;ok&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="日期参数"><a href="#日期参数" class="headerlink" title="日期参数"></a>日期参数</h3><p>在一些特殊的需求中，会涉及到日期类型数据的封装</p>
+<p>因为日期的格式多种多样（如：2022-12-12 10:05:45 、2022&#x2F;12&#x2F;12 10:05:45），那么日<br>期类型的参数在进行封装的时候，需要通过**@DateTimeFormat<strong>注解，以及其</strong>pattern属性**来设置日期的格式。</p>
+<ul>
+<li><p><strong>@DateTimeFormat注解的pattern属性中指定了哪种日期格式</strong>前端的日期参数就<strong>必须按照指定的格式传递</strong>。</p>
+</li>
+<li><p>需要使用Date类型或LocalDateTime类型，来封装传递的参数。</p>
+</li>
+<li><p>Controller方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 日期时间参数</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/dateParam&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">dateParam</span><span class="params">(<span class="meta">@DateTimeFormat(pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;)</span> LocalDateTime updateTime)</span> &#123;</span><br><span class="line">    System.out.println(updateTime);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;ok&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="JSON参数"><a href="#JSON参数" class="headerlink" title="JSON参数"></a>JSON参数</h3><p>比较复杂的参数,前后端通过会使用JSON格式的数据进行传输。 (JSON是开发中最常用的前后端数据交互方式)</p>
+<p><strong>Postman发送JSON格式数据：</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://alan.s3.bitiful.net/blog_Images/2024/05/image-20240517091424339.png" alt="image-20240517091424339"></p>
+<p><strong>服务端Controller方法接收JSON格式数据：</strong></p>
+<ul>
+<li><p>传递json格式的参数,在Controller中会使用实体类进行封装。</p>
+</li>
+<li><p><strong>封装规则：</strong>JSON数据键名与形参对象属性名相同，定义POJO类型形参即可接收参数。需要<strong>使用@RequestBody标识。</strong></p>
+</li>
+<li><p>@RequestBody注解：<strong>将JSON数据映射到形参的实体类对象中</strong>（JSON中的key和实体类中的属性名保持一致）</p>
+</li>
+<li><p>Controller方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//json参数</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/jsonParam&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">jsonParam</span><span class="params">(<span class="meta">@RequestBody</span> Users users)</span> &#123;</span><br><span class="line">    System.out.println(users);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;ok&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="路径参数"><a href="#路径参数" class="headerlink" title="路径参数"></a>路径参数</h3><p>传统的开发中请求参数是放在请求体(POST请求)传递或跟在URL后面通过?key&#x3D;value的形式传递(GET请求)。</p>
+<p>现在的开发中，经常还会直接在请求的URL中传递参数。</p>
+<blockquote>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">http://localhost:8080/user/1</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>这种传递请求参数的形式，称之为：路径参数。</p>
+<p>路径参数：</p>
+<ul>
+<li>前端：通过请求URL直接传递参数</li>
+<li>后端：使用{…}来标识该路径参数，需要使用@PathVariable获取路径参数</li>
+</ul>
+<p><strong>传递一个路径参数：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 路径参数</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/pathParam&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">pathParam</span><span class="params">(<span class="meta">@PathVariable</span> Integer id)</span> &#123;</span><br><span class="line">    System.out.println(id);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;ok&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>传递多个路径参数：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 多个路径参数</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/pathsParam/&#123;id&#125;/&#123;name&#125;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">pathsParam</span> <span class="params">(<span class="meta">@PathVariable</span> Integer id, <span class="meta">@PathVariable</span> String name)</span> &#123;</span><br><span class="line">    System.out.println(id + <span class="string">&quot;:&quot;</span> + name);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;ok&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h2><p>Controller程序，除了接收请求外，还可以进行响应。</p>
+<h3 id="ResponseBody"><a href="#ResponseBody" class="headerlink" title="@ResponseBody"></a>@ResponseBody</h3><p>controller方法中的return的结果，怎么就可以响应给浏览器</p>
+<ul>
+<li>使用**@ResponseBody**注解</li>
+</ul>
+<p><strong>@ResponseBody注解：</strong></p>
+<ul>
+<li>类型：方法注解、类注解</li>
+<li>位置：书写在Controller方法上或类上</li>
+<li>作用：将方法返回值直接响应给浏览器<ul>
+<li>如果返回值类型是实体对象&#x2F;集合，将会转换为JSON格式后在响应给浏览器</li>
+</ul>
+</li>
+</ul>
+<p>在类上添加的@<strong>RestController</strong>注解，是一个组合注解。</p>
+<ul>
+<li><strong>@RestController &#x3D; @Controller + @ResponseBody</strong></li>
+</ul>
+<p>@RestController源码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Target(&#123;ElementType.TYPE&#125;)</span> <span class="comment">//元注解(修饰注解的注解)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span> <span class="comment">//元注解</span></span><br><span class="line"><span class="meta">@Documented</span> <span class="comment">//元注解</span></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> RestController &#123;</span><br><span class="line">    <span class="meta">@AliasFor(</span></span><br><span class="line"><span class="meta">        annotation = Controller.class</span></span><br><span class="line"><span class="meta">    )</span></span><br><span class="line">    String <span class="title function_">value</span><span class="params">()</span> <span class="keyword">default</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在类上添加@RestController就相当于添加了@ResponseBody注解。</p>
+<p>类上有**@RestController注解或@ResponseBody注解<strong>时：</strong>表示当前类下所有的方法返回值做为响应数据**</p>
+<ul>
+<li>方法的返回值，如果是一个POJO对象或集合时，会先转换为JSON格式，然后响应给浏览器</li>
+</ul>
+</blockquote>
+<h3 id="统一响应结果"><a href="#统一响应结果" class="headerlink" title="统一响应结果"></a>统一响应结果</h3><p><strong>会定义一个统一的返回结果。</strong></p>
+<p>前端：只需要按照统一格式的返回结果进行解析(仅一种解析方案)，就可以拿到数据。</p>
+<p>统一的返回结果使用类来描述，在这个结果中包含：</p>
+<ul>
+<li><p><strong>响应状态码</strong>：当前请求是成功，还是失败</p>
+</li>
+<li><p><strong>状态码信息</strong>：给页面的提示信息</p>
+</li>
+<li><p><strong>返回的数据</strong>：给前端响应的数据（字符串、对象、集合）</p>
+</li>
+</ul>
+<p>定义在一个实体类Result来包含以上信息</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Result</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Integer code; <span class="comment">//响应码：成功为1，失败为0</span></span><br><span class="line">    <span class="keyword">private</span> String message; <span class="comment">// 响应码：描述信息</span></span><br><span class="line">    <span class="keyword">private</span> Object data; <span class="comment">// 数据</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 无参构造器</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Result</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 有参构造器</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Result</span><span class="params">(Integer code, String message, Object data)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.code = code;</span><br><span class="line">        <span class="built_in">this</span>.message = message;</span><br><span class="line">        <span class="built_in">this</span>.data = data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">getCode</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setCode</span><span class="params">(Integer code)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getMessage</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> message;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setMessage</span><span class="params">(String message)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.message = message;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">getData</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setData</span><span class="params">(Object data)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.data = data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Result&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;code=&quot;</span> + code +</span><br><span class="line">                <span class="string">&quot;, message=&#x27;&quot;</span> + message + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, data=&quot;</span> + data +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 增删改  成功响应（不需要给前端返回数据）</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Result <span class="title function_">success</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Result</span>(<span class="number">1</span>,<span class="string">&quot;success&quot;</span>,<span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查询 成功响应（把查询结果做为返回数据响应给前端）</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Result <span class="title function_">success</span><span class="params">(Object data)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Result</span>(<span class="number">1</span>,<span class="string">&quot;success&quot;</span>,data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 失败响应</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Result <span class="title function_">error</span> <span class="params">(String msg)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Result</span>(<span class="number">0</span>,msg,<span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>一些知识点：</p>
+<blockquote>
+<p>在SpringBoot项目中，静态资源默认可以存放的目录：</p>
+<ul>
+<li>classpath：&#x2F;static&#x2F;</li>
+<li>classpath：&#x2F;public&#x2F;</li>
+<li>classpath：&#x2F;resources&#x2F;</li>
+<li>classpath：&#x2F;META-INF&#x2F;resources&#x2F;</li>
+</ul>
+<p>classpath：</p>
+<ul>
+<li>代表的是类路径，在maven的项目中，指的就是 src&#x2F;main&#x2F;resources 或者<br>src&#x2F;main&#x2F;java，但是java目录是存放java代码的，相关的配置文件及静态资源文<br>档，就放在 src&#x2F;main&#x2F;resources下。</li>
+</ul>
+</blockquote>
+<h2 id="分层解耦"><a href="#分层解耦" class="headerlink" title="分层解耦"></a>分层解耦</h2><p>当要修改操作数据部分的代码，需要改动Controller</p>
+<p>当要完善逻辑处理部分的代码，需要改动Controller</p>
+<p>当需要修改数据响应的代码，还是需要改动Controller</p>
+<p>这样呢，就会造成整个工程代码的复用性比较差，而且代码难以维护。</p>
+<h3 id="三层架构"><a href="#三层架构" class="headerlink" title="三层架构"></a>三层架构</h3><p>进行程序设计以及程序开发时，尽可能让每一个接口、类、方法的职责更单一些（<strong>单一职责原则</strong>）。</p>
+<blockquote>
+<p><strong>单一职责原则：一个类或一个方法，就只做一件事情，只管一块功能。</strong></p>
+<p>这样就可以让类、接口、方法的复杂度更低，可读性更强，扩展性更好，也更利用后期的维护。</p>
+</blockquote>
+<p>从组成上看可以分为三个部分：</p>
+<ul>
+<li><strong>数据访问</strong>：负责业务数据的维护操作，包括增、删、改、查等操作。</li>
+<li><strong>逻辑处理</strong>：负责业务逻辑处理的代码。</li>
+<li><strong>请求处理、响应数据</strong>：负责，接收页面的请求，给页面响应数据。</li>
+</ul>
+<p>们项目开发中，可以将代码分为三层：</p>
+<ul>
+<li><strong>Controller</strong>：<strong>控制层</strong>。接收前端发送的请求，对请求进行处理，并响应数据。</li>
+<li><strong>Service</strong>：<strong>业务逻辑层</strong>。处理具体的业务逻辑。</li>
+<li><strong>Dao</strong>：<strong>数据访问层</strong>（Data Access Object），也称为持久层。负责数据访问操作，包括数据的增、删、改、查。</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://alan.s3.bitiful.net/blog_Images/2024/05/image-20240517101727795.png" alt="image-20240517101727795"></p>
+<p>基于三层架构的程序<strong>执行流程：</strong></p>
+<ul>
+<li>前端发起的请求，由Controller层接收（Controller响应数据给前端）</li>
+<li>Controller层调用Service层来进行逻辑处理（Service层处理完后，把处理结果返回给<br>Controller层）</li>
+<li>Serivce层调用Dao层（逻辑处理过程中需要用到的一些数据要从Dao层获取）</li>
+<li>Dao层操作文件中的数据（Dao拿到的数据会返回给Service层）</li>
+</ul>
+<p><strong>三层架构的好处：</strong></p>
+<ul>
+<li>复用性强</li>
+<li>便于维护</li>
+<li>利用扩展</li>
+</ul>
+<h3 id="分层解耦-1"><a href="#分层解耦-1" class="headerlink" title="分层解耦"></a>分层解耦</h3><p>解耦：解除耦合。</p>
+<h4 id="耦合问题"><a href="#耦合问题" class="headerlink" title="耦合问题"></a>耦合问题</h4><p>两个概念：内聚和耦合。</p>
+<ul>
+<li>内聚：软件中各个功能模块内部的功能联系。</li>
+<li>耦合：衡量软件中各个层&#x2F;模块之间的依赖、关联的程度。</li>
+</ul>
+<p><strong>软件设计原则：高内聚低耦合。</strong></p>
+<blockquote>
+<p>高内聚指的是：一个模块中各个元素之间的联系的紧密程度，如果各个元素(语句、程序段)之间的联系程度越高，则内聚性越高，即 **”高内聚”**。<br>低耦合指的是：软件中各个层、模块之间的依赖关联程序越低越好。</p>
+</blockquote>
+<h4 id="解耦思路"><a href="#解耦思路" class="headerlink" title="解耦思路"></a>解耦思路</h4><p>解决思路是：</p>
+<ul>
+<li>提供一个容器，容器中存储一些对象(例:EmpService对象)</li>
+<li>controller程序从容器中获取EmpService类型的对象</li>
+</ul>
+<p>涉及到Spring中的两个核心概念：</p>
+<ul>
+<li><p><strong>控制反转</strong>：Inversion Of Control，简称IOC。对象的创建控制权由程序自身转移到外部<br>(容器)，这种思想称为控制反转。</p>
+<blockquote>
+<p>对象的创建权由程序员主动创建转移到容器(由容器创建、管理对象)。这个容器称为：IOC容器或Spring容器</p>
+</blockquote>
+</li>
+<li><p>依赖注入：Dependency Injection，简称DI。容器为应用程序提供运行时，所依赖的资源，称之为依赖注入。</p>
+<blockquote>
+<p>程序运行时需要某个资源，此时容器就为其提供这个资源。</p>
+<p>例：EmpController程序运行时需要EmpService对象，Spring容器就为其提供并注入<br>EmpService对象</p>
+</blockquote>
+</li>
+</ul>
+<p>IOC容器中创建、管理的对象，称之为：<strong>bean对象</strong></p>
+<h3 id="IOC-DI"><a href="#IOC-DI" class="headerlink" title="IOC&amp;DI"></a>IOC&amp;DI</h3><h3 id="IOC详解"><a href="#IOC详解" class="headerlink" title="IOC详解"></a>IOC详解</h3><h4 id="bean的声明"><a href="#bean的声明" class="headerlink" title="bean的声明"></a>bean的声明</h4><p>IOC控制反转，就是将对象的控制权交给Spring的IOC容器，<strong>由IOC容器创建及管理对象</strong>。IOC容器创建的对象称为<strong>bean对象</strong>。</p>
+<p>要把某个对象交给IOC容器管理，需要在类上添加一个注解：**@Component**</p>
+<p>而Spring框架为了更好的标识web应用程序开发当中，bean对象到底归属于哪一层，又提供了@Component的<strong>衍生注解</strong>：</p>
+<ul>
+<li>@Controller（标注在控制层类上）</li>
+<li>@Service （标注在业务层类上）</li>
+<li>@Repository （标注在数据访问层类上）</li>
+</ul>
+<p>要把某个对象交给IOC容器管理，需要在对应的类上加上如下注解之一：</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>说明</th>
+<th>位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@Controller</td>
+<td>@Component的衍生注解</td>
+<td>标注在控制器类上</td>
+</tr>
+<tr>
+<td>@Service</td>
+<td>@Component的衍生注解</td>
+<td>标注在业务类上</td>
+</tr>
+<tr>
+<td>@Repository</td>
+<td>@Component的衍生注解</td>
+<td>标注在数据访问类上（由于与mybatis整合，用的少）</td>
+</tr>
+<tr>
+<td>@Component</td>
+<td>声明bean的基础注解</td>
+<td>不属于以上三类时,用此注解</td>
+</tr>
+</tbody></table>
+<p>在IOC容器中，每一个Bean都有一个属于自己的名字，可以通过<strong>注解的value属性指定bean的名字</strong>。<strong>如果没有指定，默认为类名首字母小写。</strong></p>
+<blockquote>
+<p>注意事项：</p>
+<ul>
+<li>声明bean的时候，可以通过value属性指定bean的名字，如果没有指定，默认为类名首字母小写。</li>
+<li>使用以上四个注解都可以声明bean，但是在springboot集成web开发中，声明控制器bean只能用@Controller。</li>
+</ul>
+</blockquote>
+<h4 id="组件扫描"><a href="#组件扫描" class="headerlink" title="组件扫描"></a>组件扫描</h4><p>bean想要生效，还需要被组件扫描</p>
+<ul>
+<li>使用四大注解声明的bean，要想生效，还需要被组件扫描注解**@ComponentScan**扫描</li>
+</ul>
+<blockquote>
+<p>@ComponentScan注解虽然没有显式配置，但是已经包含在了引导类声明注解@SpringBootApplication 中</p>
+<p>默认扫描的范围是<strong>SpringBoot启动类所在包及其子包 。</strong></p>
+</blockquote>
+<ul>
+<li>将定义的controller,service,dao这些包，都放在引导类所在包com.项目工程的子<br>包下，定义的bean就会被自动的扫描到</li>
+</ul>
+<h3 id="DI详解"><a href="#DI详解" class="headerlink" title="DI详解"></a>DI详解</h3><p>依赖注入，是指IOC容器要为应用程序去提供运行时所依赖的资源，而<strong>资源指的就是对象。</strong></p>
+<p><strong>@Autowired注解</strong>，默认是按照类型进行自动装配的（去IOC容器中找某个类型的对象，然后完成注入操作）</p>
+<p>如果在IOC容器中，存在多个相同类型的bean对象，程序运行会报错，Spring提供了以下几种解决方案：</p>
+<ul>
+<li>@Primary</li>
+<li>@Qualifier</li>
+<li>@Resource</li>
+</ul>
+<p><strong>使用@Primary注解：</strong></p>
+<ul>
+<li>当存在多个相同类型的Bean注入时，加上@Primary注解，来确定默认的实现。</li>
+</ul>
+<p><strong>使用@Qualifier注解：</strong></p>
+<ul>
+<li><p>指定当前要注入的bean对象。在@Qualifier的value属性中，指定注入的bean的名称。</p>
+</li>
+<li><p><strong>@Qualifier注解不能单独使用，必须配合@Autowired使用</strong></p>
+</li>
+</ul>
+<p><strong>使用@Resource注解：</strong></p>
+<ul>
+<li>是按照bean的名称进行注入。通过name属性指定要注入的bean的名称。</li>
+</ul>
+<blockquote>
+<p><strong>@Autowird 与 @Resource的区别</strong></p>
+<ul>
+<li>@Autowired 是spring框架提供的注解，而@Resource是JDK提供的注解</li>
+<li>@Autowired 默认是按照类型注入，而@Resource是按照名称注入</li>
+</ul>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://alanblog.cn">Alan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://alanblog.cn/posts/1bf9cdd.html">http://alanblog.cn/posts/1bf9cdd.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://alanblog.cn" target="_blank">Alan & Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/javaWeb/">javaWeb</a></div><div class="post_share"><div class="social-share" data-image="http://alan.s3.bitiful.net/blog_Images/2024/05/%E4%B8%8B%E8%BD%BD.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.staticfile.org/butterfly-extsrc/1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.staticfile.org/butterfly-extsrc/1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/bc30baf9.html" title="javaWeb（一）--前端基础"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://alan.s3.bitiful.net/blog_Images/2024/05/%E4%B8%8B%E8%BD%BD.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-10</div><div class="title">javaWeb（一）--前端基础</div></div></a></div><div><a href="/posts/6ba684cf.html" title="javaWeb（二）--前端工程"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://alan.s3.bitiful.net/blog_Images/2024/05/%E4%B8%8B%E8%BD%BD.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-11</div><div class="title">javaWeb（二）--前端工程</div></div></a></div><div><a href="/posts/54c01c91.html" title="javaWeb（三）--maven"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://alan.s3.bitiful.net/blog_Images/2024/05/%E4%B8%8B%E8%BD%BD.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-12</div><div class="title">javaWeb（三）--maven</div></div></a></div><div><a href="/posts/991db5eb.html" title="javaWeb（四）--springBoot入门"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://alan.s3.bitiful.net/blog_Images/2024/05/%E4%B8%8B%E8%BD%BD.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-13</div><div class="title">javaWeb（四）--springBoot入门</div></div></a></div><div><a href="/posts/1105f6c3.html" title="javaWeb（六）--数据库开发-MySQL"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://alan.s3.bitiful.net/blog_Images/2024/05/%E4%B8%8B%E8%BD%BD.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-24</div><div class="title">javaWeb（六）--数据库开发-MySQL</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#javaWeb%EF%BC%88%E4%BA%94%EF%BC%89%E2%80%93SpringBootWeb%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94"><span class="toc-text">javaWeb（五）–SpringBootWeb请求响应</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94%E5%8E%9F%E7%90%86"><span class="toc-text">请求响应原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82"><span class="toc-text">请求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6"><span class="toc-text">软件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Postman"><span class="toc-text">Postman</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Apifox"><span class="toc-text">Apifox</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E5%8F%82%E6%95%B0"><span class="toc-text">简单参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E5%A7%8B%E6%96%B9%E5%BC%8F"><span class="toc-text">原始方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SpringBoot%E6%96%B9%E5%BC%8F"><span class="toc-text">SpringBoot方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93%E5%8F%82%E6%95%B0"><span class="toc-text">实体参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BD%93%E5%AF%B9%E8%B1%A1"><span class="toc-text">简单实体对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%AE%9E%E4%BD%93%E5%AF%B9%E8%B1%A1"><span class="toc-text">复杂实体对象</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E9%9B%86%E5%90%88%E5%8F%82%E6%95%B0"><span class="toc-text">数组集合参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-text">数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%86%E5%90%88"><span class="toc-text">集合</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E5%8F%82%E6%95%B0"><span class="toc-text">日期参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSON%E5%8F%82%E6%95%B0"><span class="toc-text">JSON参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E5%BE%84%E5%8F%82%E6%95%B0"><span class="toc-text">路径参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%8D%E5%BA%94"><span class="toc-text">响应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ResponseBody"><span class="toc-text">@ResponseBody</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E5%93%8D%E5%BA%94%E7%BB%93%E6%9E%9C"><span class="toc-text">统一响应结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-text">案例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B1%82%E8%A7%A3%E8%80%A6"><span class="toc-text">分层解耦</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84"><span class="toc-text">三层架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B1%82%E8%A7%A3%E8%80%A6-1"><span class="toc-text">分层解耦</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%A6%E5%90%88%E9%97%AE%E9%A2%98"><span class="toc-text">耦合问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E8%80%A6%E6%80%9D%E8%B7%AF"><span class="toc-text">解耦思路</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IOC-DI"><span class="toc-text">IOC&amp;DI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IOC%E8%AF%A6%E8%A7%A3"><span class="toc-text">IOC详解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#bean%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="toc-text">bean的声明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E6%89%AB%E6%8F%8F"><span class="toc-text">组件扫描</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DI%E8%AF%A6%E8%A7%A3"><span class="toc-text">DI详解</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By Alan</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a href="https://icp.gov.moe/?keyword=20231133" target="_blank">萌ICP备20231133号</a><br><a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra"></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.staticfile.org/fancyapps-ui/5.0.19/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.staticfile.org/instant.page/5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.staticfile.org/vanilla-lazyload/17.8.3/lazyload.iife.min.js"></script><script src="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.staticfile.org/pangu/4.0.7/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script defer src="/js/monitoring.js?v=2.0"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script async src="https://cdn1.tianli0.top/npm/vue@2.6.14/dist/vue.min.js"></script><script async src="https://cdn1.tianli0.top/npm/element-ui@2.15.6/lib/index.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="130" mobile="false" src="https://cdn.staticfile.org/butterfly-extsrc/1.1.3/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.staticfile.org/butterfly-extsrc/1.1.3/click-heart.min.js" async="async" mobile="true"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="http://alanblog.cn/categories/学习笔记/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📕 Alan & 学习笔记 (11)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://alanblog.cn/categories/数据结构/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 Alan & 数据结构 (3)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://alanblog.cn/categories/软件-框架/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📔 Alan & 软件\框架 (8)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://alanblog.cn/categories/大数据技术/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 Alan & 大数据技术 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://alanblog.cn/categories/Linux系统/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📗 Alan & Linux系统 (9)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://alanblog.cn/categories/计算机操作/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📗 Alan & 电脑操作 (6)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="http://alanblog.cn/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(33.333333333333336% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #69e8f2}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站源码由Github托管" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用双线部署，主线部署于Vercel" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-Vervel-black?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://staticfile.org/" style="margin-inline:5px" data-title="本站使用staticfile为部分静态资源提供CDN加速" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-Staticfile-brightgreen?style=flat&amp;logo=lightning" alt=""/></a><a class="github-badge" target="_blank" href="https://www.dogecast.com/" style="margin-inline:5px" data-title="本站由缤纷云提供资源储存服务" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://sourcebucket.s3.bitiful.net/badge/Bucket-%E7%BC%A4%E7%BA%B7%E4%BA%91-9c62da.svg" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="/js/runtime.js"></script><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><script data-pjax src="https://cdn.cbd.int/hexo-filter-gitcalendar/lib/gitcalendar.js"></script><script data-pjax>
+  function gitcalendar_injector_config(){
+      var parent_div_git = document.getElementById('gitZone');
+      var item_html = '<div class="recent-post-item" id="gitcalendarBar" style="width:100%;height:auto;padding:10px;"><style>#git_container{min-height: 280px}@media screen and (max-width:650px) {#git_container{min-height: 0px}}</style><div id="git_loading" style="width:10%;height:100%;margin:0 auto;display: block;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animatetransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animatetransform></path></svg><style>#git_container{display: none;}</style></div><div id="git_container"></div></div>';
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      console.log('已挂载gitcalendar')
+      }
+
+    if( document.getElementById('gitZone') && (location.pathname ==='/directory/site/charts/'|| '/directory/site/charts/' ==='all')){
+        gitcalendar_injector_config()
+        GitCalendarInit("https://github-calendar-api.alanblog.cn/api?lanxin1216",['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'],'lanxin1216')
+    }
+  </script><!-- hexo injector body_end end --></body></html>
